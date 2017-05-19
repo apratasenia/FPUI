@@ -1,0 +1,15 @@
+namespace "xsamswa"."db";
+
+context tblResources{
+ 
+/*@@layout{"layoutInfo":{"x":118,"y":46.5}}*/
+entity tblResources{
+key id : String(10);
+name : String(20);
+type : Integer;
+compcode : String(4);
+rate : Double;
+
+};
+
+};
