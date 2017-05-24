@@ -2,36 +2,45 @@ ID: xsamswa
 _schema-version: '2.0'
 description: None
 version: 0.0.1
-
 modules:
- - name: db
-   type: hdb
-   path: db
-   requires:
-    - name: hdi-container
-
-
- 
-
-
- - name: javaapp
-   type: java
-   path: javaapp
-   provides:
-    - name: javaapp_api
-      properties:
-         url: ${default-url}
-   requires:
-    - name: hdi-container
-      properties:
-         JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
-            {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
-
+  - name: db
+    type: hdb
+    path: db
+    requires:
+      - name: hdi-container
+  - name: javaapp
+    type: java
+    path: javaapp
+    provides:
+      - name: javaapp_api
+        properties:
+          url: '${default-url}'
+          service_url: '${default-url}'
+    requires:
+      - name: MY_uaa
+      - name: hdi-container
+        properties:
+          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+  - name: web
+    type: html5
+    path: web
+    requires:
+      - name: MY_uaa
+      - name: javaapp_api
+        group: destinations
+        properties:
+          name: javaapp_be
+          url: '~{service_url}'
+          forwardAuthToken: true
 resources:
- - name: hdi-container
-   parameters:
+  - name: hdi-container
+    parameters:
       config:
-         schema: fpui
-   properties:
-      hdi-container-name: ${service-name}
-   type: com.sap.xs.hdi-container
+        schema: fpui
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: MY_uaa
+    type: com.sap.xs.uaa
+    parameters:
+      path: ./xs-security.json

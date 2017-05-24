@@ -1,0 +1,12 @@
+namespace "xsamswa"."db";
+@OData.publish : true
+context Entry{
+ 
+/*@@layout{"layoutInfo":{"x":68,"y":120.5}}*/
+entity jsonContainer{
+ key id : String(10);
+key version : String(10);
+content : String(100);
+};
+
+};
