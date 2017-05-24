@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::StrElementTravel" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="StrElementTravel"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::Travel_Calculation">
+    <resourceUri>plan_it.plandb.calc_views::Travel_Calculation</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="plan_it.plandb.calc_views::Travel_Calculation">
+  <attributes>
+    <attribute id="id_ver_res" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_res"/>
+      <keyMapping columnObjectName="Travel_Calculation" columnName="id_ver_res"/>
+    </attribute>
+    <attribute id="str_elem_id" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_elem_id"/>
+      <keyMapping columnObjectName="Travel_Calculation" columnName="str_elem_id"/>
+    </attribute>
+    <attribute id="structure_element" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="structure_element"/>
+      <keyMapping columnObjectName="Travel_Calculation" columnName="structure_element"/>
+    </attribute>
+    <attribute id="period" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Travel_Calculation" columnName="period"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="travel_effort" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="travel_effort"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="Travel_Calculation" columnName="travel_effort"/>
+    </measure>
+    <measure id="tr_exp_pc" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_exp_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="Travel_Calculation" columnName="tr_exp_pc"/>
+    </measure>
+    <measure id="tr_eff_exp_pc" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_eff_exp_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="Travel_Calculation" columnName="tr_eff_exp_pc"/>
+    </measure>
+    <measure id="tr_eff_exp_rev_pc" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_eff_exp_rev_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="Travel_Calculation" columnName="tr_eff_exp_rev_pc"/>
+    </measure>
+    <measure id="tr_exp_rev_pc" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_exp_rev_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="Travel_Calculation" columnName="tr_exp_rev_pc"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

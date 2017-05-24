@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::StrElementWe" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="StrElementWe"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb::data.PlAttrWeHelp">
+    <resourceUri>plan_it.plandb::data.PlAttrWeHelp</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::RecourceConv">
+    <resourceUri>plan_it.plandb.calc_views::RecourceConv</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="str_element" aggregationType="sum">
+        <descriptions defaultDescription="str_element"/>
+      </viewAttribute>
+      <viewAttribute id="str_el_descr">
+        <descriptions defaultDescription="str_el_descr"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="cost_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="cost_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="currency_ver_res_pc">
+        <descriptions defaultDescription="currency_ver_res_pc"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_res">
+        <descriptions defaultDescription="id_ver_res"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$resource_id$res_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="WorkExpPC" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+        <formula>&quot;effort&quot;*&quot;cost_rate_pc&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb::data.PlAttrWeHelp">
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_el_descr" source="str_el_descr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$resource_id$res_id" source="resource_id"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::RecourceConv">
+      <mapping xsi:type="Calculation:AttributeMapping" target="cost_rate_pc" source="cost_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_ver_res_pc" source="currency_ver_res_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$resource_id$res_id" source="res_id"/>
+    </input>
+    <joinAttribute name="JOIN$resource_id$res_id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="version_id" order="1" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_res"/>
+      <keyMapping columnObjectName="Join_1" columnName="id_ver_res"/>
+    </attribute>
+    <attribute id="str_element" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_element"/>
+      <keyMapping columnObjectName="Join_1" columnName="str_element"/>
+    </attribute>
+    <attribute id="str_el_descr" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_el_descr"/>
+      <keyMapping columnObjectName="Join_1" columnName="str_el_descr"/>
+    </attribute>
+    <attribute id="period" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Join_1" columnName="period"/>
+    </attribute>
+    <attribute id="plan_currency" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_ver_res_pc"/>
+      <keyMapping columnObjectName="Join_1" columnName="currency_ver_res_pc"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="WorkExpPC" order="5" semanticType="amount" aggregationType="sum" measureType="amount">
+      <descriptions defaultDescription="WorkExpPC"/>
+      <unitCurrencyAttribute attributeName="plan_currency"/>
+      <measureMapping columnObjectName="Join_1" columnName="WorkExpPC"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="184"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.PlAttrWeHelp" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::RecourceConv" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

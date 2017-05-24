@@ -1,0 +1,36 @@
+{
+	"format_version": 1,
+	"imports": [{
+	"target_table": "plan_it.plandb::data.Version",
+	"source_data": {
+	"data_type": "CSV",
+		"file_name": "plan_it.plandb.import::version.csv",
+		"has_header": false,
+		"dialect": "HANA",
+		"type_config": {
+		"delimiter": ","
+		}
+		},
+		
+	"import_settings": {
+	"import_columns": [
+		"id",
+		"description",
+		"startDate",
+		"endDate",
+		"currency" ]
+		},
+	"column_mappings": {
+	    "id": 1,
+		"description": 2 ,
+		"startDate": 3,
+		"endDate": 5,
+		"currency": 4
+				}
+		
+	
+	
+		
+	}
+	]
+	}

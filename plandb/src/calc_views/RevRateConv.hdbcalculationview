@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::RevRateConv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="RevRateConv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb::data.Version">
+    <resourceUri>plan_it.plandb::data.Version</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.RevenueRate">
+    <resourceUri>plan_it.plandb::data.RevenueRate</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="currency_pc_ver_rev">
+        <descriptions defaultDescription="currency"/>
+      </viewAttribute>
+      <viewAttribute id="ver_descr_rev">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="endDate_ver_rev">
+        <descriptions defaultDescription="endDate"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_rev" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="startDate_ver_rev">
+        <descriptions defaultDescription="startDate"/>
+      </viewAttribute>
+      <viewAttribute id="currency_tc_rev">
+        <descriptions defaultDescription="currency_tc"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate_name">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate_id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="list_rate_tc" aggregationType="sum">
+        <descriptions defaultDescription="list_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_rev" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+    
+      <viewAttribute id="discount" aggregationType="sum">
+        <descriptions defaultDescription="discount"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb::data.Version">
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_pc_ver_rev" source="currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ver_descr_rev" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="endDate_ver_rev" source="endDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_rev" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="startDate_ver_rev" source="startDate"/>
+    </input>
+    <input node="plan_it.plandb::data.RevenueRate">
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_tc_rev" source="currency_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_name" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="list_rate_tc" source="list_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_rev" source="version.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="discount" source="discount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_rev" source="version.id"/>
+    </input>
+    <joinAttribute name="id_ver_rev"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="currency_pc_ver_rev" order="1" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_pc_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="currency_pc_ver_rev"/>
+    </attribute>
+    <attribute id="ver_descr_rev" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ver_descr_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="ver_descr_rev"/>
+    </attribute>
+    <attribute id="endDate_ver_rev" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="endDate_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="endDate_ver_rev"/>
+    </attribute>
+    <attribute id="id_ver_rev" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="id_ver_rev"/>
+    </attribute>
+    <attribute id="startDate_ver_rev" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="startDate_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="startDate_ver_rev"/>
+    </attribute>
+    <attribute id="currency_tc_rev" order="6" displayAttribute="false" attributeHierarchyActive="false" semanticType="currencyCode">
+      <descriptions defaultDescription="currency_tc_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="currency_tc_rev"/>
+    </attribute>
+    <attribute id="rev_rate_name" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate_name"/>
+      <keyMapping columnObjectName="Join_1" columnName="rev_rate_name"/>
+    </attribute>
+    <attribute id="rev_rate_id" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="rev_rate_id"/>
+    </attribute>
+    <attribute id="list_rate_tc" order="9" semanticType="amount" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="list_rate_tc"/>
+      <unitCurrencyAttribute attributeName="currency_tc_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="list_rate_tc"/>
+    </attribute>
+    <attribute id="version_id_rev" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="version_id_rev"/>
+    </attribute>
+  
+    <attribute id="discount" order="12" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="discount"/>
+  
+      <keyMapping columnObjectName="Join_1" columnName="discount"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="list_rate_pc" order="11" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="list_rate_pc"/>
+      <unitCurrencyAttribute attributeName="currency_pc_ver_rev"/>
+      <currencyConversion errorHandling="keepUnconverted" generateOutputUnitCurrencyAttribute="false" convert="true">
+        <client>
+          <value>000</value>
+        </client>
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+        <sourceCurrency>
+          <attribute attributeName="currency_tc_rev"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <targetCurrency>
+          <attribute attributeName="currency_pc_ver_rev"/>
+        </targetCurrency>
+        <referenceDate>
+          <attribute attributeName="startDate_ver_rev"/>
+        </referenceDate>
+        <exchangeRateType>M</exchangeRateType>
+      </currencyConversion>
+      <formula>&quot;list_rate_tc&quot;</formula>
+      
+      
+      
+      </measure>
+  
+    <measure id="disc_rate_tc" order="13" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="disc_rate_tc"/>
+      <unitCurrencyAttribute attributeName="currency_tc_rev"/>
+      <currencyConversion generateOutputUnitCurrencyAttribute="true" outputUnitCurrencyAttributeName="disc_rate_tc_CURRENCY">
+        <client/>
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+        <sourceCurrency>
+          <attribute attributeName="currency_tc_rev"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <targetCurrency>
+          <attribute attributeName="currency_tc_rev"/>
+        </targetCurrency>
+        <referenceDate/>
+      </currencyConversion>
+      <formula>&quot;list_rate_tc&quot;*(100-&quot;discount&quot;)/100</formula>
+      </measure>
+    <measure id="disc_rate_pc" order="14" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="disc_rate_pc"/>
+      <unitCurrencyAttribute attributeName="currency_pc_ver_rev"/>
+      <currencyConversion errorHandling="keepUnconverted" generateOutputUnitCurrencyAttribute="false" convert="true">
+        <client>
+          <value>000</value>
+        </client>
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+        <sourceCurrency>
+          <attribute attributeName="currency_tc_rev"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <targetCurrency>
+          <attribute attributeName="currency_pc_ver_rev"/>
+        </targetCurrency>
+        <referenceDate>
+          <attribute attributeName="startDate_ver_rev"/>
+        </referenceDate>
+        <exchangeRateType>M</exchangeRateType>
+      </currencyConversion>
+      <formula>&quot;list_rate_tc&quot;*(100-&quot;discount&quot;)/100</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="206"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.Version" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.RevenueRate" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

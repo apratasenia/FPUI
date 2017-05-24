@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::TravelConv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="TravelConv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb::data.TravelVariantCalc">
+    <resourceUri>plan_it.plandb::data.TravelVariantCalc</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="plan_it.plandb::data.TravelVariantCalc">
+  <attributes>
+    <attribute id="tr_eff_lump_sum" hidden="true" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_eff_lump_sum"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="tr_eff_lump_sum"/>
+    </attribute>
+    <attribute id="tr_exp_lump_sum" hidden="true" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_exp_lump_sum"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="tr_exp_lump_sum"/>
+    </attribute>
+    <attribute id="wd_trip" order="6" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="wd_trip"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="wd_trip"/>
+    </attribute>
+    <attribute id="add_wd_trip" hidden="true" order="7" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="add_wd_trip"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="add_wd_trip"/>
+    </attribute>
+    <attribute id="tr_cost_currency" order="8" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_cost_currency"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="tr_cost_currency"/>
+    </attribute>
+    <attribute id="acc_day_tc" hidden="true" order="9" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="acc_day_tc"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="acc_day_tc"/>
+    </attribute>
+    <attribute id="contract_currency" order="10" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="contract_currency"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="contract_currency"/>
+    </attribute>
+    <attribute id="id" order="11" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false" key="true">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="id"/>
+    </attribute>
+  
+    <attribute id="start_date" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="start_date"/>
+  
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="start_date"/>
+  
+    </attribute>
+    <attribute id="plan_currency" order="13" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_currency"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="plan_currency"/>
+    </attribute>
+    <attribute id="tr_calc_type" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_calc_type"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="tr_calc_type"/>
+    </attribute>
+    <attribute id="transp_trip_tc" order="15" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="transp_trip_tc"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="transp_trip_tc"/>
+    </attribute>
+    <attribute id="other_day_tc" order="16" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_day_tc"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="other_day_tc"/>
+    </attribute>
+  
+    <attribute id="calc_type_tv" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="calc_type_tv"/>
+  
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="calc_type_tv"/>
+  
+    </attribute>
+  
+    <attribute id="total_tr_eff" order="22" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="total_tr_eff"/>
+  
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="total_tr_eff"/>
+  
+    </attribute>
+    <attribute id="structure_element" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="structure_element"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="structure_element"/>
+    </attribute>
+  
+    <attribute id="work_cost_perc" order="24" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="work_cost_perc"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="work_cost_perc"/>
+    </attribute>
+    <attribute id="trav_exp_reimb" order="25" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="trav_exp_reimb"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="trav_exp_reimb"/>
+    </attribute>
+    <attribute id="trav_eff_reimb" order="26" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="trav_eff_reimb"/>
+      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="trav_eff_reimb"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="tr_exp_lump_sum_pc" order="1" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_exp_lump_sum_pc"/>
+      <unitCurrencyAttribute attributeName="plan_currency"/>
+      <currencyConversion generateOutputUnitCurrencyAttribute="false" convert="true">
+        <client>
+          <value>000</value>
+        </client>
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+        <outputDataType datatype="REAL"/>
+        <sourceCurrency>
+          <attribute attributeName="contract_currency"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <round>true</round>
+        <targetCurrency>
+          <attribute attributeName="plan_currency"/>
+        </targetCurrency>
+        <referenceDate>
+          <attribute attributeName="start_date"/>
+        </referenceDate>
+        <exchangeRateType>M</exchangeRateType>
+      </currencyConversion>
+      <formula>if(
+            &quot;tr_calc_type&quot;= 'LSUMD' ,&quot;tr_exp_lump_sum&quot;, 0)
+         
+        
+</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="tr_eff_lump_sum_pc" order="2" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_eff_lump_sum_pc"/>
+      <unitCurrencyAttribute attributeName="plan_currency"/>
+      <currencyConversion generateOutputUnitCurrencyAttribute="false" convert="true">
+        <client>
+          <value>000</value>
+        </client>
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+        <outputDataType datatype="REAL"/>
+        <sourceCurrency>
+          <attribute attributeName="contract_currency"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <targetCurrency>
+          <attribute attributeName="plan_currency"/>
+        </targetCurrency>
+        <referenceDate>
+          <attribute attributeName="start_date"/>
+        </referenceDate>
+        <exchangeRateType>M</exchangeRateType>
+      </currencyConversion>
+      <formula>if(&quot;tr_calc_type&quot;= 'LSUMD' ,&quot;tr_eff_lump_sum&quot;, 0)</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="tr_exp_day_tc" order="3" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_exp_day_tc"/>
+      <unitCurrencyAttribute attributeName="tr_cost_currency"/>
+      <formula>if(&quot;calc_type_tv&quot;= 'A' ,((&quot;wd_trip&quot; +&quot;add_wd_trip&quot;) * (&quot;acc_day_tc&quot;+&quot;other_day_tc&quot;)+&quot;transp_trip_tc&quot;) / &quot;wd_trip&quot;, 0)</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+  
+    <measure id="tr_exp_day_pc" order="18" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_exp_day_pc"/>
+      <unitCurrencyAttribute attributeName="plan_currency"/>
+  
+      <currencyConversion generateOutputUnitCurrencyAttribute="false" convert="true">
+  
+        <client>
+  
+          <value>000</value>
+  
+        </client>
+  
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+  
+        <outputDataType datatype="REAL"/>
+  
+        <sourceCurrency>
+  
+          <attribute attributeName="tr_cost_currency"/>
+  
+        </sourceCurrency>
+  
+        <erpDecimalShift>true</erpDecimalShift>
+  
+        <targetCurrency>
+  
+          <attribute attributeName="plan_currency"/>
+  
+        </targetCurrency>
+  
+        <referenceDate>
+  
+          <attribute attributeName="start_date"/>
+  
+        </referenceDate>
+  
+        <exchangeRateType>M</exchangeRateType>
+  
+      </currencyConversion>
+      <formula>if(&quot;calc_type_tv&quot;= 'A' ,((&quot;wd_trip&quot; +&quot;add_wd_trip&quot;) * (&quot;acc_day_tc&quot;+&quot;other_day_tc&quot;)+&quot;transp_trip_tc&quot;) / &quot;wd_trip&quot;, 0)</formula>
+      
+      
+      
+      </measure>
+  
+    <measure id="tr_exp_lump_sum_tc" order="19" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_exp_lump_sum_tc"/>
+      <unitCurrencyAttribute attributeName="contract_currency"/>
+      <formula>if(&quot;tr_calc_type&quot;= 'LSUMD',&quot;tr_exp_lump_sum&quot; ,0) </formula>
+      
+      </measure>
+    <measure id="tr_eff_lump_sum_tc" order="20" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_eff_lump_sum_tc"/>
+      <unitCurrencyAttribute attributeName="contract_currency"/>
+      <formula>if(&quot;tr_calc_type&quot;= 'LSUMD',&quot;tr_eff_lump_sum&quot; ,0) </formula>
+      
+      </measure>
+    <measure id="tr_eff_day" order="21" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="1" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_eff_day"/>
+      <formula>if (&quot;wd_trip&quot; = 0, 0,&quot;total_tr_eff&quot;/&quot;wd_trip&quot;)</formula>
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

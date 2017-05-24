@@ -1,0 +1,57 @@
+{
+	"format_version": 1,
+	"imports": [{
+	"target_table": "plan_it.plandb::data.TravelVariant",
+	"source_data": {
+	"data_type": "CSV",
+		"file_name": "plan_it.plandb.import::travel_variant.csv",
+		"has_header": false,
+		"dialect": "HANA",
+		"type_config": {
+		"delimiter": ","
+		}
+		},
+		
+	"import_settings": {
+	"import_columns": [
+		"id",
+		"trav_var_name",
+		"calc_type_tv",
+		"version.id",
+		"work_cost_perc",
+	    "wd_trip",
+		"add_wd_trip",
+		"total_tr_eff",
+		"tr_cost_currency",
+		"transp_trip_tc",
+		"acc_day_tc",
+		"other_day_tc",
+		"trav_exp_reimb",
+		"trav_eff_reimb",
+		"tr_eff_lump_sum",
+		"tr_exp_lump_sum",
+		"str_element.id"
+		]
+		},
+	"column_mappings": {
+	   "id": 1,
+		"trav_var_name": 2,
+		"calc_type_tv": 3,
+		"version.id": 4,
+		"work_cost_perc": 5,
+	    "wd_trip": 6,
+		"add_wd_trip": 7,
+		"total_tr_eff": 8,
+		"tr_cost_currency": 9,
+		"transp_trip_tc": 10,
+		"acc_day_tc": 11,
+		"other_day_tc": 12,
+		"trav_exp_reimb": 13,
+		"trav_eff_reimb": 14,
+		"tr_eff_lump_sum": 15,
+		"tr_exp_lump_sum": 16,
+		"str_element.id": 17
+				}
+	}
+	]
+	}

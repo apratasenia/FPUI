@@ -13,7 +13,7 @@ package com.company.xsamswa.javaapp.extensiontemplate;
 // * @since   2016-08-23
 
 
-
+import java.math.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -45,7 +45,7 @@ import com.sap.gateway.v4.rt.cds.api.CDSDSParams;
 
 public class ExtensionSample {
 
-	
+	public static String dbnamespace = "plan_it.plandb";
 	final static Logger logr = LoggerFactory.getLogger("ExtensionSample");
 
 	
@@ -56,7 +56,7 @@ public class ExtensionSample {
 	 // * @throws ExtensionException
 	 // * @throws SQLException
 	 
-	@ExtendDataProvider(entitySet = { "jsonContainer" }, requestTypes = RequestType.CREATE)
+	@ExtendDataProvider(entitySet = { "Resource" }, requestTypes = RequestType.CREATE)
 	public void createRecord(ExtensionContext ecx)
 			throws ODataApplicationException, ExtensionException, SQLException {
 		logr.debug("Entering create Record method.");
@@ -80,12 +80,15 @@ public class ExtensionSample {
 			DeserializerResult payload = dpCtx.getDeserializerResult();
 			Entity customerEntity = payload.getEntity();
 
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"xsamswa.db::Entry.jsonContainer\" VALUES ( ?,?,?)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" VALUES ( ?,?,?,?,?)");
 			
 			stmt.setString(1, customerEntity.getProperty("id").getValue().toString());
-			stmt.setString(2, customerEntity.getProperty("version").getValue().toString());
-			stmt.setString(3, customerEntity.getProperty("content").getValue().toString());
-
+			stmt.setString(2, customerEntity.getProperty("description").getValue().toString());
+			stmt.setBigDecimal(3, new BigDecimal(customerEntity.getProperty("cost_rate_tc").getValue().toString()));
+			stmt.setString(4, customerEntity.getProperty("currency_tc").getValue().toString());
+			Entity assocEntity = customerEntity.getNavigationLink("version").getInlineEntity();
+            stmt.setInt(5, Integer.parseInt(assocEntity.getProperty("id").getValue().toString()));			
+            
 			logr.trace("ExtensionSample  <<  {createRecord} SQL Statement ");
 			
 			stmt.executeUpdate();
@@ -133,10 +136,10 @@ public class ExtensionSample {
 	 // * @throws SQLException
 	 // * @throws ExtensionException
 	 
-	@ExtendDataProvider(entitySet = { "jsonContainer" }, requestTypes = RequestType.UPDATE )
+	@ExtendDataProvider(entitySet = { "Resource" }, requestTypes = RequestType.UPDATE )
 	public void updateRecord(ExtensionContext ecx)
 			throws ODataApplicationException, SQLException, ExtensionException {
-		String planId = null, planVersion = null;
+		String resourceId = null;
 		logr.debug("Entering ExtensionSample  << {updateRecord}");
 		Connection conn = null;
 		try {
@@ -155,11 +158,7 @@ public class ExtensionSample {
 			//the SQL to delete the correct entry.
 			for (UriParameter uriParam : keyPredicateList) {
 				if (uriParam.getName().equals("id")) {
-					planId = uriParam.getText();
-				}
-				if (uriParam.getName().equals("version")) {
-					planVersion = uriParam.getText();
-					planVersion = planVersion.substring(1, planVersion.length()-1);
+					resourceId = uriParam.getText();
 				}
 			}
 
@@ -170,9 +169,15 @@ public class ExtensionSample {
 			//we only update the specified properties.
 			if (httpMethod.equals(HttpMethod.PUT)) {
 				
-				stmt = conn.prepareStatement("UPDATE \"xsamswa.db::Entry.jsonContainer\"  " + "SET \"content\"=? Where \"id\"=? AND \"version\"= ?");
+				stmt = conn.prepareStatement("UPDATE \"" + dbnamespace + "::data.Resource\"  " + "SET \"description\"=?, \"cost_rate_tc\"=?, \"currency_tc\"=?, \"version.id\"=? " + 
+     				" Where \"id\"=?");
 				
-				stmt.setString(1, String.valueOf(entity.getProperty("content").getValue()));
+				stmt.setString(1, String.valueOf(entity.getProperty("description").getValue()));
+				stmt.setBigDecimal(2, new BigDecimal(String.valueOf(entity.getProperty("cost_rate_tc").getValue())));
+				stmt.setString(3, String.valueOf(entity.getProperty("currency_tc").getValue()));
+			    Entity assocEntity = entity.getNavigationLink("version").getInlineEntity();
+                stmt.setInt(4, Integer.parseInt(assocEntity.getProperty("id").getValue().toString()));				
+                stmt.setString(5, resourceId);
 			}
 			else if (httpMethod.equals(HttpMethod.PATCH)) {
 				
@@ -231,9 +236,9 @@ public class ExtensionSample {
 	 // * @throws ODataApplicationException
 	 // * @throws ExtensionException 
 	 
-	@ExtendDataProvider(entitySet = { "jsonContainer" }, requestTypes = RequestType.DELETE)
+	@ExtendDataProvider(entitySet = { "Resource" }, requestTypes = RequestType.DELETE)
 	public void deleteRecord(ExtensionContext ecx) throws ODataApplicationException, SQLException, ExtensionException {
-		String planId = null, planVersion = null;
+		String resourceId = null;
 		Connection conn = null;
 
 		logr.debug("Entering ExtensionSample  << {deleteRecord}");
@@ -251,17 +256,13 @@ public class ExtensionSample {
 			//the SQL to delete the correct entry.
 			for (UriParameter uriParam : keyPredicateList) {
 				if (uriParam.getName().equals("id")) {
-					planId = uriParam.getText();
-				}
-				if (uriParam.getName().equals("version")) {
-					planVersion = uriParam.getText();
-					planVersion = planVersion.substring(1, planVersion.length()-1);
+					resourceId = uriParam.getText();
 				}
 			}
 
-			PreparedStatement stmt = conn.prepareStatement("DELETE  FROM \"xsamswa.db::Entry.jsonContainer\" WHERE \"id\" = ? AND \"version\"= ?");
-			stmt.setString(1, planId);
-			stmt.setString(2, planVersion);
+			PreparedStatement stmt = conn.prepareStatement("DELETE  FROM \"" + dbnamespace + "::data.Resource\" WHERE \"id\" = ? ");
+			stmt.setString(1, resourceId);
+
 			logr.trace("ExtensionSample  << {deleteRecord} SQL Statement");
 			int rowAffected = stmt.executeUpdate();
 			if (rowAffected == 0) {
@@ -269,7 +270,7 @@ public class ExtensionSample {
 			} else {
 				logr.info( " Customer deleted successfully ");
 			}
-			conn.close();
+//			conn.close();
 
 		} catch (SQLException sqlEx) {
 			logr.error("ExtensionSample  << {deleteRecord}", sqlEx);

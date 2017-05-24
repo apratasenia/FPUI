@@ -1,0 +1,4 @@
+SEQUENCE "plan_it.plandb.sequences::effortId" 
+START WITH 7 MAXVALUE 1999999999
+RESET BY 
+SELECT IFNULL(MAX("id"), 3) + 1 FROM "plan_it.plandb::data.EffortPlanning"

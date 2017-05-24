@@ -1,0 +1,32 @@
+{
+	"format_version": 1,
+	"imports": [{
+	"target_table": "plan_it.plandb::data.Resource",
+	"source_data": {
+	"data_type": "CSV",
+		"file_name": "plan_it.plandb.import::resource.csv",
+		"has_header": false,
+		"dialect": "HANA",
+		"type_config": {
+		"delimiter": ","
+		}
+		},
+		
+	"import_settings": {
+	"import_columns": [
+		"id",
+		"description",
+		"cost_rate_tc",
+		"currency_tc",
+		"version.id" ]
+		},
+	"column_mappings": {
+	    "id": 1,
+		"description": 2 ,
+		"cost_rate_tc": 3,
+		"currency_tc": 4,
+		"version.id": 5
+				}
+	}
+	]
+	}

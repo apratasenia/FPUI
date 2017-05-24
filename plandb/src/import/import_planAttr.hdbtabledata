@@ -1,0 +1,37 @@
+{
+	"format_version": 1,
+	"imports": [{
+	"target_table": "plan_it.plandb::data.PlanAttributes",
+	"source_data": {
+	"data_type": "CSV",
+		"file_name": "plan_it.plandb.import::planAttributes.csv",
+		"has_header": false,
+		"dialect": "HANA",
+		"type_config": {
+		"delimiter": ","
+		}
+		},
+		
+	"import_settings": {
+	"import_columns": [
+		"ID",
+		"resource.id",
+		"str_elemet.id",
+		"revenue_rate.id",
+		"travel_variant.id",
+		"version.id",
+		"remote_percent" ]
+		},
+	"column_mappings": {
+	    "ID": 1,
+		"resource.id": 2 ,
+		"str_elemet.id": 3,
+		"revenue_rate.id": 4,
+		"travel_variant.id": 5,
+		"version.id": 6,
+		"remote_percent": 7
+				}
+		
+	}
+	]
+	}

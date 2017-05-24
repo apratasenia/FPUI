@@ -3,11 +3,7 @@ _schema-version: '2.0'
 description: None
 version: 0.0.1
 modules:
-  - name: db
-    type: hdb
-    path: db
-    requires:
-      - name: hdi-container
+  
   - name: javaapp
     type: java
     path: javaapp
@@ -18,9 +14,9 @@ modules:
           service_url: '${default-url}'
     requires:
       - name: MY_uaa
-      - name: hdi-container
+      - name: hdi-container_2
         properties:
-          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name_2}"}]'
   - name: web
     type: html5
     path: web
@@ -32,6 +28,13 @@ modules:
           name: javaapp_be
           url: '~{service_url}'
           forwardAuthToken: true
+
+  - name: plandb
+    type: hdb
+    path: plandb
+    requires:
+     - name: hdi-container_2
+
 resources:
   - name: hdi-container
     parameters:
@@ -44,3 +47,9 @@ resources:
     type: com.sap.xs.uaa
     parameters:
       path: ./xs-security.json
+
+  - name: hdi-container_2
+    properties:
+       hdi-container-name_2: ${service-name}
+    type: com.sap.xs.hdi-container
+

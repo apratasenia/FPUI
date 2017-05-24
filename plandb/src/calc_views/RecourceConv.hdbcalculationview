@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::RecourceConv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" historyEnabled="true">
+<descriptions defaultDescription="RecourceConv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb::data.Version">
+    <resourceUri>plan_it.plandb::data.Version</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.Resource">
+    <resourceUri>plan_it.plandb::data.Resource</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="referential">
+    <viewAttributes>
+      <viewAttribute id="currency_ver_res_pc">
+        <descriptions defaultDescription="currency"/>
+      </viewAttribute>
+      <viewAttribute id="version_descr_res">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="ver_endDate_res">
+        <descriptions defaultDescription="endDate"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_res" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="startDate_ver_res">
+        <descriptions defaultDescription="startDate"/>
+      </viewAttribute>
+      <viewAttribute id="cost_rate_tc" aggregationType="sum">
+        <descriptions defaultDescription="cost_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="currency_tc_res">
+        <descriptions defaultDescription="currency_tc"/>
+      </viewAttribute>
+      <viewAttribute id="resource_name">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="res_id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="res_version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb::data.Version">
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_ver_res_pc" source="currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_descr_res" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ver_endDate_res" source="endDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="startDate_ver_res" source="startDate"/>
+    </input>
+    <input node="plan_it.plandb::data.Resource">
+      <mapping xsi:type="Calculation:AttributeMapping" target="cost_rate_tc" source="cost_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_tc_res" source="currency_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_name" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="res_id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="res_version_id" source="version.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="version.id"/>
+    </input>
+    <joinAttribute name="id_ver_res"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="currency_ver_res_pc" order="2" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_ver_res_pc"/>
+      <keyMapping columnObjectName="Join_1" columnName="currency_ver_res_pc"/>
+    </attribute>
+    <attribute id="version_descr_res" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_descr_res"/>
+      <keyMapping columnObjectName="Join_1" columnName="version_descr_res"/>
+    </attribute>
+    <attribute id="ver_endDate_res" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ver_endDate_res"/>
+      <keyMapping columnObjectName="Join_1" columnName="ver_endDate_res"/>
+    </attribute>
+    <attribute id="id_ver_res" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_res"/>
+      <keyMapping columnObjectName="Join_1" columnName="id_ver_res"/>
+    </attribute>
+    <attribute id="startDate_ver_res" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="startDate_ver_res"/>
+      <keyMapping columnObjectName="Join_1" columnName="startDate_ver_res"/>
+    </attribute>
+    <attribute id="cost_rate_tc" order="7" semanticType="amount" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="cost_rate_tc"/>
+      <unitCurrencyAttribute attributeName="currency_tc_res"/>
+      <keyMapping columnObjectName="Join_1" columnName="cost_rate_tc"/>
+    </attribute>
+    <attribute id="currency_tc_res" order="8" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_tc_res"/>
+      <keyMapping columnObjectName="Join_1" columnName="currency_tc_res"/>
+    </attribute>
+    <attribute id="resource_name" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="resource_name"/>
+      <keyMapping columnObjectName="Join_1" columnName="resource_name"/>
+    </attribute>
+    <attribute id="res_id" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="res_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="res_id"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="res_version_id" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="res_version_id"/>
+      <measureMapping columnObjectName="Join_1" columnName="res_version_id"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="cost_rate_pc" order="1" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="cost_rate_pc"/>
+      <unitCurrencyAttribute attributeName="currency_ver_res_pc"/>
+      <currencyConversion errorHandling="keepUnconverted" generateOutputUnitCurrencyAttribute="false" convert="true">
+        <client>
+          <value>000</value>
+        </client>
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+        <sourceCurrency>
+          <attribute attributeName="currency_tc_res"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <targetCurrency>
+          <attribute attributeName="currency_ver_res_pc"/>
+        </targetCurrency>
+        <referenceDate>
+          <attribute attributeName="startDate_ver_res"/>
+        </referenceDate>
+        <exchangeRateType>M</exchangeRateType>
+      </currencyConversion>
+      <formula>&quot;cost_rate_tc&quot;</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="211"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.Version" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.Resource" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

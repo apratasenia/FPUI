@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::TnM_WR_VSOE" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="TnM_WR_VSOE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::RevRateConv">
+    <resourceUri>plan_it.plandb.calc_views::RevRateConv</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.PlAttrWr">
+    <resourceUri>plan_it.plandb::data.PlAttrWr</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="currency_pc_ver_rev">
+        <descriptions defaultDescription="currency_pc_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="ver_descr_rev">
+        <descriptions defaultDescription="ver_descr_rev"/>
+      </viewAttribute>
+      <viewAttribute id="endDate_ver_rev">
+        <descriptions defaultDescription="endDate_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_rev">
+        <descriptions defaultDescription="id_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_tc_CURRENCY">
+        <descriptions defaultDescription="disc_rate_tc_CURRENCY"/>
+      </viewAttribute>
+      <viewAttribute id="startDate_ver_rev">
+        <descriptions defaultDescription="startDate_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="currency_tc_rev">
+        <descriptions defaultDescription="currency_tc_rev"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate_name">
+        <descriptions defaultDescription="rev_rate_name"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate_id">
+        <descriptions defaultDescription="rev_rate_id"/>
+      </viewAttribute>
+      <viewAttribute id="list_rate_tc">
+        <descriptions defaultDescription="list_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_rev">
+        <descriptions defaultDescription="version_id_rev"/>
+      </viewAttribute>
+      <viewAttribute id="list_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="list_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="discount">
+        <descriptions defaultDescription="discount"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_tc" aggregationType="sum">
+        <descriptions defaultDescription="disc_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="disc_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="wr_calc_type">
+        <descriptions defaultDescription="wr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+      <viewAttribute id="id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate_id_1" aggregationType="sum">
+        <descriptions defaultDescription="rev_rate_id_1"/>
+      </viewAttribute>
+      <viewAttribute id="pl_attr_id" aggregationType="sum">
+        <descriptions defaultDescription="pl_attr_id"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="str_elem_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elem_id"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="str_elem_descr">
+        <descriptions defaultDescription="str_elem_descr"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb.calc_views::RevRateConv">
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_pc_ver_rev" source="currency_pc_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ver_descr_rev" source="ver_descr_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="endDate_ver_rev" source="endDate_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_rev" source="id_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_tc_CURRENCY" source="disc_rate_tc_CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="startDate_ver_rev" source="startDate_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_tc_rev" source="currency_tc_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_name" source="rev_rate_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_id" source="rev_rate_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="list_rate_tc" source="list_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_rev" source="version_id_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="list_rate_pc" source="list_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="discount" source="discount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_tc" source="disc_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_pc" source="disc_rate_pc"/>
+    </input>
+    <input node="plan_it.plandb::data.PlAttrWr">
+      <mapping xsi:type="Calculation:AttributeMapping" target="wr_calc_type" source="wr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_id_1" source="rev_rate_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="pl_attr_id" source="pl_attr_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elem_id" source="str_elem_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elem_descr" source="str_elem_descr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_id" source="rev_rate_id"/>
+    </input>
+    <joinAttribute name="rev_rate_id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="currency_pc_ver_rev" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_pc_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="currency_pc_ver_rev"/>
+    </attribute>
+    <attribute id="ver_descr_rev" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ver_descr_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="ver_descr_rev"/>
+    </attribute>
+    <attribute id="endDate_ver_rev" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="endDate_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="endDate_ver_rev"/>
+    </attribute>
+    <attribute id="id_ver_rev" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="id_ver_rev"/>
+    </attribute>
+    <attribute id="disc_rate_tc_CURRENCY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_tc_CURRENCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="disc_rate_tc_CURRENCY"/>
+    </attribute>
+    <attribute id="startDate_ver_rev" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="startDate_ver_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="startDate_ver_rev"/>
+    </attribute>
+    <attribute id="currency_tc_rev" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_tc_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="currency_tc_rev"/>
+    </attribute>
+    <attribute id="rev_rate_name" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate_name"/>
+      <keyMapping columnObjectName="Join_1" columnName="rev_rate_name"/>
+    </attribute>
+    <attribute id="rev_rate_id" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="rev_rate_id"/>
+    </attribute>
+    <attribute id="list_rate_tc" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="list_rate_tc"/>
+      <keyMapping columnObjectName="Join_1" columnName="list_rate_tc"/>
+    </attribute>
+    <attribute id="version_id_rev" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id_rev"/>
+      <keyMapping columnObjectName="Join_1" columnName="version_id_rev"/>
+    </attribute>
+    <attribute id="list_rate_pc" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="list_rate_pc"/>
+      <keyMapping columnObjectName="Join_1" columnName="list_rate_pc"/>
+    </attribute>
+    <attribute id="discount" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="discount"/>
+      <keyMapping columnObjectName="Join_1" columnName="discount"/>
+    </attribute>
+    <attribute id="disc_rate_tc" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_tc"/>
+      <keyMapping columnObjectName="Join_1" columnName="disc_rate_tc"/>
+    </attribute>
+    <attribute id="disc_rate_pc" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_pc"/>
+      <keyMapping columnObjectName="Join_1" columnName="disc_rate_pc"/>
+    </attribute>
+    <attribute id="wr_calc_type" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="wr_calc_type"/>
+      <keyMapping columnObjectName="Join_1" columnName="wr_calc_type"/>
+    </attribute>
+    <attribute id="unit" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="unit"/>
+      <keyMapping columnObjectName="Join_1" columnName="unit"/>
+    </attribute>
+    <attribute id="id" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="Join_1" columnName="id"/>
+    </attribute>
+    <attribute id="version_id" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="version_id"/>
+    </attribute>
+    <attribute id="rev_rate_id_1" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate_id_1"/>
+      <keyMapping columnObjectName="Join_1" columnName="rev_rate_id_1"/>
+    </attribute>
+    <attribute id="pl_attr_id" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="pl_attr_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="pl_attr_id"/>
+    </attribute>
+    <attribute id="period" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Join_1" columnName="period"/>
+    </attribute>
+    <attribute id="str_elem_id" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_elem_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="str_elem_id"/>
+    </attribute>
+    <attribute id="effort" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="effort"/>
+      <keyMapping columnObjectName="Join_1" columnName="effort"/>
+    </attribute>
+    <attribute id="str_elem_descr" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_elem_descr"/>
+      <keyMapping columnObjectName="Join_1" columnName="str_elem_descr"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="TnMWr_PC" order="26" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="TnMWr_PC"/>
+      <formula>if(&quot;wr_calc_type&quot;='TNM',effort*&quot;disc_rate_pc&quot;,0)</formula>
+      
+      
+      
+      
+      
+      </measure>
+  
+    <measure id="VSOE_TnM_TC" order="27" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="VSOE_TnM_TC"/>
+      <formula>&quot;effort&quot;*&quot;list_rate_tc&quot;/1.15</formula>
+      
+      
+      
+      </measure>
+    <measure id="VSOE_TnM_PC" order="28" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="VSOE_TnM_PC"/>
+      <formula>&quot;effort&quot;*&quot;list_rate_pc&quot;/1.15</formula>
+      
+      
+      
+      </measure>
+    <measure id="PlVal_TnM_TC" order="29" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="PlVal_TnM_TC"/>
+      <formula>if(&quot;wr_calc_type&quot;='TNM',&quot;effort&quot;*&quot;disc_rate_tc&quot;,0)</formula>
+      
+      
+      
+      </measure>
+    <measure id="PlVal_TnM_PC" order="30" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="13" scale="1" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="PlVal_TnM_PC"/>
+      <formula>if(&quot;wr_calc_type&quot;='TNM',&quot;effort&quot;*&quot;disc_rate_pc&quot;,0)</formula>
+      
+      
+      
+      </measure>
+  
+    <measure id="VSOE_Risk_TC" order="31" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="VSOE_Risk_TC"/>
+      <formula>if(&quot;wr_calc_type&quot;='FPP',&quot;effort&quot; * &quot;list_rate_tc&quot; / 1.15  * 0.1,0)</formula>
+      
+      
+      </measure>
+    <measure id="VSOE_Risk_PC" order="32" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="VSOE_Risk_PC"/>
+      <formula>if(&quot;wr_calc_type&quot;='FPP',&quot;effort&quot;*&quot;list_rate_pc&quot;/1.15*0.1,0)</formula>
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="215"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::RevRateConv" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="73" y="32"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.PlAttrWr" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="478" y="32"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

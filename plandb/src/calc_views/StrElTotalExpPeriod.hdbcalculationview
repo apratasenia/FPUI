@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::StrElotalExpPeriod" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="StrElementTotalExp"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::StrElementWe">
+    <resourceUri>plan_it.plandb.calc_views::StrElementWe</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::StrElementTravel">
+    <resourceUri>plan_it.plandb.calc_views::StrElementTravel</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="referential">
+    <viewAttributes>
+      <viewAttribute id="version_id">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_element">
+        <descriptions defaultDescription="str_element"/>
+      </viewAttribute>
+      <viewAttribute id="str_el_descr">
+        <descriptions defaultDescription="str_el_descr"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="WorkExpPC" aggregationType="sum">
+        <descriptions defaultDescription="WorkExpPC"/>
+      </viewAttribute>
+      <viewAttribute id="plan_currency">
+        <descriptions defaultDescription="plan_currency"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_res">
+        <descriptions defaultDescription="id_ver_res"/>
+      </viewAttribute>
+      <viewAttribute id="str_elem_id">
+        <descriptions defaultDescription="str_elem_id"/>
+      </viewAttribute>
+      <viewAttribute id="structure_element">
+        <descriptions defaultDescription="structure_element"/>
+      </viewAttribute>
+      <viewAttribute id="period_1">
+        <descriptions defaultDescription="period_1"/>
+      </viewAttribute>
+      <viewAttribute id="travel_effort" aggregationType="sum">
+        <descriptions defaultDescription="travel_effort"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_exp_rev_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_exp_rev_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_rev_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_rev_pc"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb.calc_views::StrElementWe">
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_el_descr" source="str_el_descr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WorkExpPC" source="WorkExpPC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_currency" source="plan_currency"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::StrElementTravel">
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elem_id" source="str_elem_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="structure_element" source="structure_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period_1" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="travel_effort" source="travel_effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_pc" source="tr_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_exp_pc" source="tr_eff_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_exp_rev_pc" source="tr_eff_exp_rev_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_rev_pc" source="tr_exp_rev_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="id_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_elem_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_el_descr" source="structure_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+    </input>
+    <joinAttribute name="version_id"/>
+    <joinAttribute name="str_element"/>
+    <joinAttribute name="str_el_descr"/>
+    <joinAttribute name="period"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="version_id" key="true" order="1" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="version_id"/>
+    </attribute>
+    <attribute id="str_element" key="true" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_element"/>
+      <keyMapping columnObjectName="Join_1" columnName="str_element"/>
+    </attribute>
+    <attribute id="period" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Join_1" columnName="period"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="WorkExpPC" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WorkExpPC"/>
+      <measureMapping columnObjectName="Join_1" columnName="WorkExpPC"/>
+    </measure>
+    <measure id="tr_exp_pc" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_exp_pc"/>
+      <measureMapping columnObjectName="Join_1" columnName="tr_exp_pc"/>
+    </measure>
+    <measure id="tr_eff_exp_pc" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_eff_exp_pc"/>
+      <measureMapping columnObjectName="Join_1" columnName="tr_eff_exp_pc"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="Total_Expenses" order="7" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" expressionLanguage="COLUMN_ENGINE" scale="2">
+      <descriptions defaultDescription="Total Expenses"/>
+      <formula>&quot;WorkExpPC&quot;+&quot;tr_exp_pc&quot;+&quot;tr_eff_exp_pc&quot;</formula>
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="205"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::StrElementWe" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::StrElementTravel" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

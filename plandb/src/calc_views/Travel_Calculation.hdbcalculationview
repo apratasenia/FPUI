@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::Travel_Calculation" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Travel_Calculation"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb::data.PlAttrTravel">
+    <resourceUri>plan_it.plandb::data.PlAttrTravel</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::TravelConv">
+    <resourceUri>plan_it.plandb.calc_views::TravelConv</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::RecourceConv">
+    <resourceUri>plan_it.plandb.calc_views::RecourceConv</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::RevRateConv">
+    <resourceUri>plan_it.plandb.calc_views::RevRateConv</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="tr_calc_type">
+        <descriptions defaultDescription="tr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="ID" aggregationType="sum">
+        <descriptions defaultDescription="ID"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency">
+        <descriptions defaultDescription="contract_currency"/>
+      </viewAttribute>
+      <viewAttribute id="resource_id" aggregationType="sum">
+        <descriptions defaultDescription="resource_id"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate" aggregationType="sum">
+        <descriptions defaultDescription="rev_rate"/>
+      </viewAttribute>
+      <viewAttribute id="remote_percent" aggregationType="sum">
+        <descriptions defaultDescription="remote_percent"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+      <viewAttribute id="trave_variant" aggregationType="sum">
+        <descriptions defaultDescription="trave_variant"/>
+      </viewAttribute>
+      <viewAttribute id="effort_id" aggregationType="sum">
+        <descriptions defaultDescription="effort_id"/>
+      </viewAttribute>
+      <viewAttribute id="trav_var_name">
+        <descriptions defaultDescription="trav_var_name"/>
+      </viewAttribute>
+      <viewAttribute id="calc_type_tv">
+        <descriptions defaultDescription="calc_type_tv"/>
+      </viewAttribute>
+      <viewAttribute id="str_elem_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elem_id"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_lump_sum_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_lump_sum_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_lump_sum_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_lump_sum_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_day_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_day_tc"/>
+      </viewAttribute>
+      <viewAttribute id="wd_trip">
+        <descriptions defaultDescription="wd_trip"/>
+      </viewAttribute>
+      <viewAttribute id="tr_cost_currency">
+        <descriptions defaultDescription="tr_cost_currency"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency_1">
+        <descriptions defaultDescription="contract_currency_1"/>
+      </viewAttribute>
+      <viewAttribute id="id">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="start_date">
+        <descriptions defaultDescription="start_date"/>
+      </viewAttribute>
+      <viewAttribute id="plan_currency">
+        <descriptions defaultDescription="plan_currency"/>
+      </viewAttribute>
+      <viewAttribute id="tr_calc_type_1">
+        <descriptions defaultDescription="tr_calc_type_1"/>
+      </viewAttribute>
+      <viewAttribute id="transp_trip_tc">
+        <descriptions defaultDescription="transp_trip_tc"/>
+      </viewAttribute>
+      <viewAttribute id="other_day_tc">
+        <descriptions defaultDescription="other_day_tc"/>
+      </viewAttribute>
+      <viewAttribute id="calc_type_tv_1">
+        <descriptions defaultDescription="calc_type_tv_1"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_day_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_day_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_lump_sum_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_lump_sum_tc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_lump_sum_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_lump_sum_tc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_day" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_day"/>
+      </viewAttribute>
+      <viewAttribute id="total_tr_eff">
+        <descriptions defaultDescription="total_tr_eff"/>
+      </viewAttribute>
+      <viewAttribute id="structure_element">
+        <descriptions defaultDescription="structure_element"/>
+      </viewAttribute>
+      <viewAttribute id="work_cost_perc">
+        <descriptions defaultDescription="work_cost_perc"/>
+      </viewAttribute>
+      <viewAttribute id="trav_exp_reimb">
+        <descriptions defaultDescription="trav_exp_reimb"/>
+      </viewAttribute>
+      <viewAttribute id="trav_eff_reimb">
+        <descriptions defaultDescription="trav_eff_reimb"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb::data.PlAttrTravel">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type" source="tr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency" source="contract_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="resource_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate" source="rev_rate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="remote_percent" source="remote_percent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trave_variant" source="trave_variant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort_id" source="effort_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_var_name" source="trav_var_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="calc_type_tv" source="calc_type_tv"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elem_id" source="str_elem_id"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::TravelConv">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_lump_sum_pc" source="tr_exp_lump_sum_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_lump_sum_pc" source="tr_eff_lump_sum_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_day_tc" source="tr_exp_day_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wd_trip" source="wd_trip"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_cost_currency" source="tr_cost_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency_1" source="contract_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="start_date" source="start_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_currency" source="plan_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type_1" source="tr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="transp_trip_tc" source="transp_trip_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_day_tc" source="other_day_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="calc_type_tv_1" source="calc_type_tv"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_day_pc" source="tr_exp_day_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_lump_sum_tc" source="tr_exp_lump_sum_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_lump_sum_tc" source="tr_eff_lump_sum_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_day" source="tr_eff_day"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="total_tr_eff" source="total_tr_eff"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="structure_element" source="structure_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="work_cost_perc" source="work_cost_perc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_exp_reimb" source="trav_exp_reimb"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_eff_reimb" source="trav_eff_reimb"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trave_variant" source="id"/>
+    </input>
+    <joinAttribute name="trave_variant"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="tr_calc_type">
+        <descriptions defaultDescription="tr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="ID" aggregationType="sum">
+        <descriptions defaultDescription="ID"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency">
+        <descriptions defaultDescription="contract_currency"/>
+      </viewAttribute>
+      <viewAttribute id="resource_id" aggregationType="sum">
+        <descriptions defaultDescription="resource_id"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate" aggregationType="sum">
+        <descriptions defaultDescription="rev_rate"/>
+      </viewAttribute>
+      <viewAttribute id="remote_percent" aggregationType="sum">
+        <descriptions defaultDescription="remote_percent"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+      <viewAttribute id="trave_variant" aggregationType="sum">
+        <descriptions defaultDescription="trave_variant"/>
+      </viewAttribute>
+      <viewAttribute id="effort_id" aggregationType="sum">
+        <descriptions defaultDescription="effort_id"/>
+      </viewAttribute>
+      <viewAttribute id="trav_var_name">
+        <descriptions defaultDescription="trav_var_name"/>
+      </viewAttribute>
+      <viewAttribute id="calc_type_tv">
+        <descriptions defaultDescription="calc_type_tv"/>
+      </viewAttribute>
+      <viewAttribute id="str_elem_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elem_id"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_lump_sum_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_lump_sum_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_lump_sum_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_lump_sum_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_day_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_day_tc"/>
+      </viewAttribute>
+      <viewAttribute id="wd_trip" aggregationType="sum">
+        <descriptions defaultDescription="wd_trip"/>
+      </viewAttribute>
+      <viewAttribute id="tr_cost_currency">
+        <descriptions defaultDescription="tr_cost_currency"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency_1">
+        <descriptions defaultDescription="contract_currency_1"/>
+      </viewAttribute>
+      <viewAttribute id="id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="start_date">
+        <descriptions defaultDescription="start_date"/>
+      </viewAttribute>
+      <viewAttribute id="plan_currency">
+        <descriptions defaultDescription="plan_currency"/>
+      </viewAttribute>
+      <viewAttribute id="tr_calc_type_1">
+        <descriptions defaultDescription="tr_calc_type_1"/>
+      </viewAttribute>
+      <viewAttribute id="transp_trip_tc" aggregationType="sum">
+        <descriptions defaultDescription="transp_trip_tc"/>
+      </viewAttribute>
+      <viewAttribute id="other_day_tc" aggregationType="sum">
+        <descriptions defaultDescription="other_day_tc"/>
+      </viewAttribute>
+      <viewAttribute id="calc_type_tv_1">
+        <descriptions defaultDescription="calc_type_tv_1"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_day_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_day_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_lump_sum_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_lump_sum_tc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_lump_sum_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_lump_sum_tc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_day" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_day"/>
+      </viewAttribute>
+      <viewAttribute id="total_tr_eff" aggregationType="sum">
+        <descriptions defaultDescription="total_tr_eff"/>
+      </viewAttribute>
+      <viewAttribute id="structure_element">
+        <descriptions defaultDescription="structure_element"/>
+      </viewAttribute>
+      <viewAttribute id="work_cost_perc" aggregationType="sum">
+        <descriptions defaultDescription="work_cost_perc"/>
+      </viewAttribute>
+      <viewAttribute id="trav_exp_reimb" aggregationType="sum">
+        <descriptions defaultDescription="trav_exp_reimb"/>
+      </viewAttribute>
+      <viewAttribute id="trav_eff_reimb" aggregationType="sum">
+        <descriptions defaultDescription="trav_eff_reimb"/>
+      </viewAttribute>
+      <viewAttribute id="cost_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="cost_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="currency_ver_res_pc">
+        <descriptions defaultDescription="currency_ver_res_pc"/>
+      </viewAttribute>
+      <viewAttribute id="version_descr_res">
+        <descriptions defaultDescription="version_descr_res"/>
+      </viewAttribute>
+      <viewAttribute id="ver_endDate_res">
+        <descriptions defaultDescription="ver_endDate_res"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_res">
+        <descriptions defaultDescription="id_ver_res"/>
+      </viewAttribute>
+      <viewAttribute id="startDate_ver_res">
+        <descriptions defaultDescription="startDate_ver_res"/>
+      </viewAttribute>
+      <viewAttribute id="cost_rate_tc">
+        <descriptions defaultDescription="cost_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="currency_tc_res">
+        <descriptions defaultDescription="currency_tc_res"/>
+      </viewAttribute>
+      <viewAttribute id="resource_name">
+        <descriptions defaultDescription="resource_name"/>
+      </viewAttribute>
+      <viewAttribute id="res_id">
+        <descriptions defaultDescription="res_id"/>
+      </viewAttribute>
+      <viewAttribute id="res_version_id" aggregationType="sum">
+        <descriptions defaultDescription="res_version_id"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type" source="tr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency" source="contract_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="resource_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate" source="rev_rate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="remote_percent" source="remote_percent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trave_variant" source="trave_variant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort_id" source="effort_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_var_name" source="trav_var_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="calc_type_tv" source="calc_type_tv"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elem_id" source="str_elem_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_lump_sum_pc" source="tr_exp_lump_sum_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_lump_sum_pc" source="tr_eff_lump_sum_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_day_tc" source="tr_exp_day_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wd_trip" source="wd_trip"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_cost_currency" source="tr_cost_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency_1" source="contract_currency_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="start_date" source="start_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_currency" source="plan_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type_1" source="tr_calc_type_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="transp_trip_tc" source="transp_trip_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_day_tc" source="other_day_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="calc_type_tv_1" source="calc_type_tv_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_day_pc" source="tr_exp_day_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_lump_sum_tc" source="tr_exp_lump_sum_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_lump_sum_tc" source="tr_eff_lump_sum_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_day" source="tr_eff_day"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="total_tr_eff" source="total_tr_eff"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="structure_element" source="structure_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="work_cost_perc" source="work_cost_perc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_exp_reimb" source="trav_exp_reimb"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_eff_reimb" source="trav_eff_reimb"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::RecourceConv">
+      <mapping xsi:type="Calculation:AttributeMapping" target="cost_rate_pc" source="cost_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_ver_res_pc" source="currency_ver_res_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_descr_res" source="version_descr_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ver_endDate_res" source="ver_endDate_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="startDate_ver_res" source="startDate_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cost_rate_tc" source="cost_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_tc_res" source="currency_tc_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_name" source="resource_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="res_id" source="res_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="res_version_id" source="res_version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="res_id"/>
+    </input>
+    <joinAttribute name="resource_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="tr_calc_type">
+        <descriptions defaultDescription="tr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="ID" aggregationType="sum">
+        <descriptions defaultDescription="ID"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency">
+        <descriptions defaultDescription="contract_currency"/>
+      </viewAttribute>
+      <viewAttribute id="resource_id" aggregationType="sum">
+        <descriptions defaultDescription="resource_id"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate" aggregationType="sum">
+        <descriptions defaultDescription="rev_rate"/>
+      </viewAttribute>
+      <viewAttribute id="remote_percent" aggregationType="sum">
+        <descriptions defaultDescription="remote_percent"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+      <viewAttribute id="trave_variant" aggregationType="sum">
+        <descriptions defaultDescription="trave_variant"/>
+      </viewAttribute>
+      <viewAttribute id="effort_id" aggregationType="sum">
+        <descriptions defaultDescription="effort_id"/>
+      </viewAttribute>
+      <viewAttribute id="trav_var_name">
+        <descriptions defaultDescription="trav_var_name"/>
+      </viewAttribute>
+      <viewAttribute id="calc_type_tv">
+        <descriptions defaultDescription="calc_type_tv"/>
+      </viewAttribute>
+      <viewAttribute id="str_elem_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elem_id"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_lump_sum_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_lump_sum_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_lump_sum_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_lump_sum_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_day_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_day_tc"/>
+      </viewAttribute>
+      <viewAttribute id="wd_trip" aggregationType="sum">
+        <descriptions defaultDescription="wd_trip"/>
+      </viewAttribute>
+      <viewAttribute id="tr_cost_currency">
+        <descriptions defaultDescription="tr_cost_currency"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency_1">
+        <descriptions defaultDescription="contract_currency_1"/>
+      </viewAttribute>
+      <viewAttribute id="id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="start_date">
+        <descriptions defaultDescription="start_date"/>
+      </viewAttribute>
+      <viewAttribute id="plan_currency">
+        <descriptions defaultDescription="plan_currency"/>
+      </viewAttribute>
+      <viewAttribute id="tr_calc_type_1">
+        <descriptions defaultDescription="tr_calc_type_1"/>
+      </viewAttribute>
+      <viewAttribute id="transp_trip_tc" aggregationType="sum">
+        <descriptions defaultDescription="transp_trip_tc"/>
+      </viewAttribute>
+      <viewAttribute id="other_day_tc" aggregationType="sum">
+        <descriptions defaultDescription="other_day_tc"/>
+      </viewAttribute>
+      <viewAttribute id="calc_type_tv_1">
+        <descriptions defaultDescription="calc_type_tv_1"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_day_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_day_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_lump_sum_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_lump_sum_tc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_lump_sum_tc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_lump_sum_tc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_day" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_day"/>
+      </viewAttribute>
+      <viewAttribute id="total_tr_eff" aggregationType="sum">
+        <descriptions defaultDescription="total_tr_eff"/>
+      </viewAttribute>
+      <viewAttribute id="structure_element">
+        <descriptions defaultDescription="structure_element"/>
+      </viewAttribute>
+      <viewAttribute id="work_cost_perc" aggregationType="sum">
+        <descriptions defaultDescription="work_cost_perc"/>
+      </viewAttribute>
+      <viewAttribute id="trav_exp_reimb" aggregationType="sum">
+        <descriptions defaultDescription="trav_exp_reimb"/>
+      </viewAttribute>
+      <viewAttribute id="trav_eff_reimb" aggregationType="sum">
+        <descriptions defaultDescription="trav_eff_reimb"/>
+      </viewAttribute>
+      <viewAttribute id="cost_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="cost_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="currency_ver_res_pc">
+        <descriptions defaultDescription="currency_ver_res_pc"/>
+      </viewAttribute>
+      <viewAttribute id="version_descr_res">
+        <descriptions defaultDescription="version_descr_res"/>
+      </viewAttribute>
+      <viewAttribute id="ver_endDate_res">
+        <descriptions defaultDescription="ver_endDate_res"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_res" aggregationType="sum">
+        <descriptions defaultDescription="id_ver_res"/>
+      </viewAttribute>
+      <viewAttribute id="startDate_ver_res">
+        <descriptions defaultDescription="startDate_ver_res"/>
+      </viewAttribute>
+      <viewAttribute id="cost_rate_tc" aggregationType="sum">
+        <descriptions defaultDescription="cost_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="currency_tc_res">
+        <descriptions defaultDescription="currency_tc_res"/>
+      </viewAttribute>
+      <viewAttribute id="resource_name">
+        <descriptions defaultDescription="resource_name"/>
+      </viewAttribute>
+      <viewAttribute id="res_id" aggregationType="sum">
+        <descriptions defaultDescription="res_id"/>
+      </viewAttribute>
+      <viewAttribute id="res_version_id" aggregationType="sum">
+        <descriptions defaultDescription="res_version_id"/>
+      </viewAttribute>
+      <viewAttribute id="currency_pc_ver_rev">
+        <descriptions defaultDescription="currency_pc_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="ver_descr_rev">
+        <descriptions defaultDescription="ver_descr_rev"/>
+      </viewAttribute>
+      <viewAttribute id="endDate_ver_rev">
+        <descriptions defaultDescription="endDate_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_rev">
+        <descriptions defaultDescription="id_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_tc_CURRENCY">
+        <descriptions defaultDescription="disc_rate_tc_CURRENCY"/>
+      </viewAttribute>
+      <viewAttribute id="startDate_ver_rev">
+        <descriptions defaultDescription="startDate_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="currency_tc_rev">
+        <descriptions defaultDescription="currency_tc_rev"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate_name">
+        <descriptions defaultDescription="rev_rate_name"/>
+      </viewAttribute>
+      <viewAttribute id="rev_rate_id">
+        <descriptions defaultDescription="rev_rate_id"/>
+      </viewAttribute>
+      <viewAttribute id="list_rate_tc">
+        <descriptions defaultDescription="list_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_rev">
+        <descriptions defaultDescription="version_id_rev"/>
+      </viewAttribute>
+      <viewAttribute id="list_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="list_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="discount">
+        <descriptions defaultDescription="discount"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_tc" aggregationType="sum">
+        <descriptions defaultDescription="disc_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="disc_rate_pc"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type" source="tr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency" source="contract_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="resource_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate" source="rev_rate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="remote_percent" source="remote_percent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trave_variant" source="trave_variant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort_id" source="effort_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_var_name" source="trav_var_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="calc_type_tv" source="calc_type_tv"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elem_id" source="str_elem_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_lump_sum_pc" source="tr_exp_lump_sum_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_lump_sum_pc" source="tr_eff_lump_sum_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_day_tc" source="tr_exp_day_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wd_trip" source="wd_trip"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_cost_currency" source="tr_cost_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency_1" source="contract_currency_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="start_date" source="start_date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_currency" source="plan_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type_1" source="tr_calc_type_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="transp_trip_tc" source="transp_trip_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="other_day_tc" source="other_day_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="calc_type_tv_1" source="calc_type_tv_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_day_pc" source="tr_exp_day_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_lump_sum_tc" source="tr_exp_lump_sum_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_lump_sum_tc" source="tr_eff_lump_sum_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_day" source="tr_eff_day"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="total_tr_eff" source="total_tr_eff"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="structure_element" source="structure_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="work_cost_perc" source="work_cost_perc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_exp_reimb" source="trav_exp_reimb"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="trav_eff_reimb" source="trav_eff_reimb"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cost_rate_pc" source="cost_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_ver_res_pc" source="currency_ver_res_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_descr_res" source="version_descr_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ver_endDate_res" source="ver_endDate_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="startDate_ver_res" source="startDate_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="cost_rate_tc" source="cost_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_tc_res" source="currency_tc_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_name" source="resource_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="res_id" source="res_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="res_version_id" source="res_version_id"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::RevRateConv">
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_pc_ver_rev" source="currency_pc_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ver_descr_rev" source="ver_descr_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="endDate_ver_rev" source="endDate_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_rev" source="id_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_tc_CURRENCY" source="disc_rate_tc_CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="startDate_ver_rev" source="startDate_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_tc_rev" source="currency_tc_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_name" source="rev_rate_name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate_id" source="rev_rate_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="list_rate_tc" source="list_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_rev" source="version_id_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="list_rate_pc" source="list_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="discount" source="discount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_tc" source="disc_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_pc" source="disc_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rev_rate" source="rev_rate_id"/>
+    </input>
+    <joinAttribute name="rev_rate"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_3">
+  <attributes>
+    <attribute id="tr_calc_type" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_calc_type"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_calc_type"/>
+    </attribute>
+    <attribute id="ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_3" columnName="ID"/>
+    </attribute>
+    <attribute id="contract_currency" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="contract_currency"/>
+      <keyMapping columnObjectName="Join_3" columnName="contract_currency"/>
+    </attribute>
+    <attribute id="resource_id" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="resource_id"/>
+      <keyMapping columnObjectName="Join_3" columnName="resource_id"/>
+    </attribute>
+    <attribute id="rev_rate" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate"/>
+      <keyMapping columnObjectName="Join_3" columnName="rev_rate"/>
+    </attribute>
+    <attribute id="remote_percent" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="remote_percent"/>
+      <keyMapping columnObjectName="Join_3" columnName="remote_percent"/>
+    </attribute>
+    <attribute id="effort" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="effort"/>
+      <keyMapping columnObjectName="Join_3" columnName="effort"/>
+    </attribute>
+    <attribute id="period" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Join_3" columnName="period"/>
+    </attribute>
+    <attribute id="unit" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="unit"/>
+      <keyMapping columnObjectName="Join_3" columnName="unit"/>
+    </attribute>
+    <attribute id="trave_variant" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="trave_variant"/>
+      <keyMapping columnObjectName="Join_3" columnName="trave_variant"/>
+    </attribute>
+    <attribute id="effort_id" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="effort_id"/>
+      <keyMapping columnObjectName="Join_3" columnName="effort_id"/>
+    </attribute>
+    <attribute id="trav_var_name" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="trav_var_name"/>
+      <keyMapping columnObjectName="Join_3" columnName="trav_var_name"/>
+    </attribute>
+    <attribute id="calc_type_tv" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="calc_type_tv"/>
+      <keyMapping columnObjectName="Join_3" columnName="calc_type_tv"/>
+    </attribute>
+    <attribute id="str_elem_id" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_elem_id"/>
+      <keyMapping columnObjectName="Join_3" columnName="str_elem_id"/>
+    </attribute>
+    <attribute id="tr_exp_lump_sum_pc" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_exp_lump_sum_pc"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_exp_lump_sum_pc"/>
+    </attribute>
+    <attribute id="tr_eff_lump_sum_pc" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_eff_lump_sum_pc"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_eff_lump_sum_pc"/>
+    </attribute>
+    <attribute id="tr_exp_day_tc" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_exp_day_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_exp_day_tc"/>
+    </attribute>
+    <attribute id="wd_trip" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="wd_trip"/>
+      <keyMapping columnObjectName="Join_3" columnName="wd_trip"/>
+    </attribute>
+    <attribute id="tr_cost_currency" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_cost_currency"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_cost_currency"/>
+    </attribute>
+    <attribute id="contract_currency_1" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="contract_currency_1"/>
+      <keyMapping columnObjectName="Join_3" columnName="contract_currency_1"/>
+    </attribute>
+    <attribute id="id" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="Join_3" columnName="id"/>
+    </attribute>
+    <attribute id="start_date" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="start_date"/>
+      <keyMapping columnObjectName="Join_3" columnName="start_date"/>
+    </attribute>
+    <attribute id="plan_currency" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="plan_currency"/>
+      <keyMapping columnObjectName="Join_3" columnName="plan_currency"/>
+    </attribute>
+    <attribute id="tr_calc_type_1" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_calc_type_1"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_calc_type_1"/>
+    </attribute>
+    <attribute id="transp_trip_tc" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="transp_trip_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="transp_trip_tc"/>
+    </attribute>
+    <attribute id="other_day_tc" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="other_day_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="other_day_tc"/>
+    </attribute>
+    <attribute id="calc_type_tv_1" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="calc_type_tv_1"/>
+      <keyMapping columnObjectName="Join_3" columnName="calc_type_tv_1"/>
+    </attribute>
+    <attribute id="tr_exp_day_pc" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_exp_day_pc"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_exp_day_pc"/>
+    </attribute>
+    <attribute id="tr_exp_lump_sum_tc" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_exp_lump_sum_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_exp_lump_sum_tc"/>
+    </attribute>
+    <attribute id="tr_eff_lump_sum_tc" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_eff_lump_sum_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_eff_lump_sum_tc"/>
+    </attribute>
+    <attribute id="tr_eff_day" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tr_eff_day"/>
+      <keyMapping columnObjectName="Join_3" columnName="tr_eff_day"/>
+    </attribute>
+    <attribute id="total_tr_eff" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="total_tr_eff"/>
+      <keyMapping columnObjectName="Join_3" columnName="total_tr_eff"/>
+    </attribute>
+    <attribute id="structure_element" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="structure_element"/>
+      <keyMapping columnObjectName="Join_3" columnName="structure_element"/>
+    </attribute>
+    <attribute id="work_cost_perc" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="work_cost_perc"/>
+      <keyMapping columnObjectName="Join_3" columnName="work_cost_perc"/>
+    </attribute>
+    <attribute id="trav_exp_reimb" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="trav_exp_reimb"/>
+      <keyMapping columnObjectName="Join_3" columnName="trav_exp_reimb"/>
+    </attribute>
+    <attribute id="trav_eff_reimb" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="trav_eff_reimb"/>
+      <keyMapping columnObjectName="Join_3" columnName="trav_eff_reimb"/>
+    </attribute>
+    <attribute id="cost_rate_pc" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="cost_rate_pc"/>
+      <keyMapping columnObjectName="Join_3" columnName="cost_rate_pc"/>
+    </attribute>
+    <attribute id="currency_ver_res_pc" order="38" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_ver_res_pc"/>
+      <keyMapping columnObjectName="Join_3" columnName="currency_ver_res_pc"/>
+    </attribute>
+    <attribute id="version_descr_res" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_descr_res"/>
+      <keyMapping columnObjectName="Join_3" columnName="version_descr_res"/>
+    </attribute>
+    <attribute id="ver_endDate_res" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ver_endDate_res"/>
+      <keyMapping columnObjectName="Join_3" columnName="ver_endDate_res"/>
+    </attribute>
+    <attribute id="id_ver_res" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_res"/>
+      <keyMapping columnObjectName="Join_3" columnName="id_ver_res"/>
+    </attribute>
+    <attribute id="startDate_ver_res" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="startDate_ver_res"/>
+      <keyMapping columnObjectName="Join_3" columnName="startDate_ver_res"/>
+    </attribute>
+    <attribute id="cost_rate_tc" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="cost_rate_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="cost_rate_tc"/>
+    </attribute>
+    <attribute id="currency_tc_res" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_tc_res"/>
+      <keyMapping columnObjectName="Join_3" columnName="currency_tc_res"/>
+    </attribute>
+    <attribute id="resource_name" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="resource_name"/>
+      <keyMapping columnObjectName="Join_3" columnName="resource_name"/>
+    </attribute>
+    <attribute id="res_id" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="res_id"/>
+      <keyMapping columnObjectName="Join_3" columnName="res_id"/>
+    </attribute>
+    <attribute id="res_version_id" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="res_version_id"/>
+      <keyMapping columnObjectName="Join_3" columnName="res_version_id"/>
+    </attribute>
+    <attribute id="currency_pc_ver_rev" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_pc_ver_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="currency_pc_ver_rev"/>
+    </attribute>
+    <attribute id="ver_descr_rev" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ver_descr_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="ver_descr_rev"/>
+    </attribute>
+    <attribute id="endDate_ver_rev" order="50" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="endDate_ver_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="endDate_ver_rev"/>
+    </attribute>
+    <attribute id="id_ver_rev" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="id_ver_rev"/>
+    </attribute>
+    <attribute id="disc_rate_tc_CURRENCY" order="52" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_tc_CURRENCY"/>
+      <keyMapping columnObjectName="Join_3" columnName="disc_rate_tc_CURRENCY"/>
+    </attribute>
+    <attribute id="startDate_ver_rev" order="53" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="startDate_ver_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="startDate_ver_rev"/>
+    </attribute>
+    <attribute id="currency_tc_rev" order="54" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_tc_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="currency_tc_rev"/>
+    </attribute>
+    <attribute id="rev_rate_name" order="55" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate_name"/>
+      <keyMapping columnObjectName="Join_3" columnName="rev_rate_name"/>
+    </attribute>
+    <attribute id="rev_rate_id" order="56" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rev_rate_id"/>
+      <keyMapping columnObjectName="Join_3" columnName="rev_rate_id"/>
+    </attribute>
+    <attribute id="list_rate_tc" order="57" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="list_rate_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="list_rate_tc"/>
+    </attribute>
+    <attribute id="version_id_rev" order="58" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="version_id_rev"/>
+    </attribute>
+    <attribute id="list_rate_pc" order="59" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="list_rate_pc"/>
+      <keyMapping columnObjectName="Join_3" columnName="list_rate_pc"/>
+    </attribute>
+    <attribute id="discount" order="60" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="discount"/>
+      <keyMapping columnObjectName="Join_3" columnName="discount"/>
+    </attribute>
+    <attribute id="disc_rate_tc" order="61" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_tc"/>
+      <keyMapping columnObjectName="Join_3" columnName="disc_rate_tc"/>
+    </attribute>
+    <attribute id="disc_rate_pc" order="62" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_pc"/>
+      <keyMapping columnObjectName="Join_3" columnName="disc_rate_pc"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="travel_effort" order="63" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="travel_effort"/>
+      <formula>if(&quot;calc_type_tv&quot;='A',&quot;effort&quot;*(100 - &quot;remote_percent&quot;) /100 * &quot;tr_eff_day&quot; / 8, 0 ) 
+	</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="tr_exp_pc" order="64" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_exp_pc"/>
+      <formula>if(&quot;calc_type_tv&quot;='A',&quot;effort&quot;*(100-&quot;remote_percent&quot;) /100 * &quot;tr_exp_day_pc&quot;, 
+if(&quot;calc_type_tv&quot;='P',&quot;effort&quot;*&quot;cost_rate_pc&quot;*&quot;work_cost_perc&quot;/100,0))
+</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="tr_eff_exp_pc" order="65" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_eff_exp_pc"/>
+      <formula>if(&quot;calc_type_tv&quot;='A',&quot;effort&quot; * &quot;cost_rate_pc&quot; * (100-&quot;remote_percent&quot;) /100 * &quot;tr_eff_day&quot; / 16, 0)</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="tr_eff_exp_rev_pc" order="66" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr_eff_exp_rev_pc"/>
+      <formula>if(&quot;tr_calc_type&quot;='LSUMD' and &quot;calc_type_tv&quot; = 'A', &quot;effort&quot; * (100-&quot;remote_percent&quot;) /100 * &quot;tr_eff_day&quot; / 8 * &quot;tr_eff_lump_sum_pc&quot;,
+if(&quot;tr_calc_type&quot; = 'TCREIM', &quot;effort&quot; * (100-&quot;remote_percent&quot;) /100 * &quot;disc_rate_pc&quot; * &quot;trav_eff_reimb&quot; / 100 / 2,0))</formula>
+      
+      
+      
+      </measure>
+  
+    <measure id="tr_exp_rev_pc" order="67" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="tr"/>
+      <formula>if(&quot;tr_calc_type&quot;='LSUMD' and &quot;calc_type_tv&quot; = 'A', &quot;effort&quot; * (100-&quot;remote_percent&quot;) / 100 * &quot;tr_exp_lump_sum_pc&quot;,
+if(&quot;tr_calc_type&quot; = 'TCREIM' and &quot;calc_type_tv&quot; = 'A', &quot;effort&quot; * (100-&quot;remote_percent&quot;) / 100 * &quot;tr_exp_day_pc&quot; * &quot;trav_exp_reimb&quot; / 100,if(&quot;tr_calc_type&quot; = 'TCREIM' and &quot;calc_type_tv&quot; = 'P', &quot;effort&quot; * &quot;cost_rate_pc&quot; * &quot;work_cost_perc&quot; / 100 * (100 -&quot;remote_percent&quot;) / 100 * &quot;trav_exp_reimb&quot; / 100,0)))</formula>
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="390"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.PlAttrTravel" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::TravelConv" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="297"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::RecourceConv" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="201"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::RevRateConv" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

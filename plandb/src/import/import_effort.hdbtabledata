@@ -1,0 +1,36 @@
+{
+	"format_version": 1,
+	"imports": [{
+	"target_table": "plan_it.plandb::data.EffortPlanning",
+	"source_data": {
+	"data_type": "CSV",
+		"file_name": "plan_it.plandb.import::effort.csv",
+		"has_header": false,
+		"dialect": "HANA",
+		"type_config": {
+		"delimiter": ","
+		}
+		},
+		
+	"import_settings": {
+	"import_columns": [
+		"period",
+		"attributeId.ID",
+		"effort",
+		"unit",
+		"id" ]
+		},
+	"column_mappings": {
+	    "period": 1,
+		"attributeId.ID": 2 ,
+		"effort": 3,
+		"unit": 4,
+		"id": 5
+				}
+		
+	
+	
+		
+	}
+	]
+	}
