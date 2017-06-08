@@ -77,6 +77,16 @@
 	<listener>
 		<listener-class>com.sap.gateway.v4.rt.core.web.ODataApplicationInitializer</listener-class>
 	</listener>
+
+	<filter>
+	    <filter-name>CorsFilter</filter-name>
+	    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>CorsFilter</filter-name>
+	    <url-pattern>/java/odata/v4/*</url-pattern>
+	</filter-mapping>
+	
 	<!--listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
