@@ -181,32 +181,41 @@ public class ExtensionSample {
 			}
 			else if (httpMethod.equals(HttpMethod.PATCH)) {
 				
-/*				String sqlPatch = "UPDATE \"MySalesOrderService.Customer\"  " + " SET ";
-				StringBuffer sbSqlPatch = new StringBuffer(sqlPatch);
-				if (entity.getProperty("CustomerName").getValue() != null) {
-
-					sbSqlPatch.append(
-							" \"CustomerName\"='" + String.valueOf(entity.getProperty("CustomerName").getValue()));
+				String sqlSet = "UPDATE \"" + dbnamespace + "::data.Resource\"  " + " SET ";
+				String sqlParams = "";
+				String fieldName = "description";
+				Property prop = entity.getProperty(fieldName);
+				if (prop != null && prop.getValue() != null) {
+					sqlParams += " \"" + fieldName + "\"='" + String.valueOf(prop.getValue()) + "'";
+					prop = null;
 				}
-				if (City != null) {
-
-					sbSqlPatch.append("'," + " \"CustAddress.City\"='" + City);
-				}
-				if (Country != null) {
-
-					sbSqlPatch.append("', \"CustAddress.Country\"='" + Country + "'");
-				}
-				if (State != null)
-					sbSqlPatch.append(", \"CustAddress.State\"='" + State);
-				if (Area != null)
-					sbSqlPatch.append("',\"CustAddress.Area\"='" + Area);
-				if (Street != null)
-					sbSqlPatch.append("',\"CustAddress.Street\"='" + Street + "' ");
-
-				sbSqlPatch.append("Where \"CustomerID\"=" + custId);
-				sbSqlPatch.append(" AND \"Type\"='" + custType + "'");
 				
-				stmt = conn.prepareStatement(sqlPatch + sbSqlPatch); */
+				fieldName = "cost_rate_tc";
+				prop = entity.getProperty(fieldName);
+				if (prop != null && prop.getValue() != null) {
+					if (sqlParams != "") sqlParams += ",";
+					sqlParams += " \"" + fieldName + "\"='" + String.valueOf(prop.getValue()) + "'";
+					prop = null;
+				}
+				
+				fieldName = "currency_tc";
+				prop = entity.getProperty(fieldName);
+				if (prop != null && prop.getValue() != null) {
+					if (sqlParams != "") sqlParams += ",";
+					sqlParams += " \"" + fieldName + "\"='" + String.valueOf(prop.getValue()) + "'";
+					prop = null;
+				}
+
+				fieldName = "version";
+				prop = entity.getProperty(fieldName);
+				if (prop != null && prop.getValue() != null) {
+					if (sqlParams != "") sqlParams += ",";
+					sqlParams += " \"version.id\"='" + String.valueOf(prop.getValue()) + "'";
+					prop = null;
+				}
+
+				sqlParams = sqlParams + " Where \"id\"=" + resourceId;
+				stmt = conn.prepareStatement(sqlSet + sqlParams);
 				
 			}
 			try {
@@ -229,7 +238,6 @@ public class ExtensionSample {
 		logr.debug("Exiting ExtensionSample  << {updateRecord}");
 	}
 
-	
 	 // * This method is used to delete entity
 	 // * 
 	 // * @param ecx
