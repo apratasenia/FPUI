@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::Version_VSOE" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Version_VSOE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::TnM_WR_VSOE">
+    <resourceUri>plan_it.plandb.calc_views::TnM_WR_VSOE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="plan_it.plandb.calc_views::TnM_WR_VSOE">
+  <attributes>
+    <attribute id="id_ver_rev" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_rev"/>
+      <keyMapping columnObjectName="TnM_WR_VSOE" columnName="id_ver_rev"/>
+    </attribute>
+    <attribute id="currency_pc_ver_rev" order="5" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_pc_ver_rev"/>
+      <keyMapping columnObjectName="TnM_WR_VSOE" columnName="currency_pc_ver_rev"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="VSOE_TnM_PC" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="VSOE_TnM_PC"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="TnM_WR_VSOE" columnName="VSOE_TnM_PC"/>
+    </measure>
+    <measure id="VSOE_Risk_PC" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="VSOE_Risk_PC"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="TnM_WR_VSOE" columnName="VSOE_Risk_PC"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="VSOE" order="4" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" expressionLanguage="SQL" scale="2">
+      <descriptions defaultDescription="VSOE"/>
+      <formula>&quot;VSOE_TnM_PC&quot;+&quot;VSOE_Risk_PC&quot;</formula>
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

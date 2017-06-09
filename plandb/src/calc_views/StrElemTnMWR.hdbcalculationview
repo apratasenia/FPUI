@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::StrElemTnMWR" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="StrElemTnMWR"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::TnM_WR_VSOE">
+    <resourceUri>plan_it.plandb.calc_views::TnM_WR_VSOE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="plan_it.plandb.calc_views::TnM_WR_VSOE">
+  <attributes>
+    <attribute id="id_ver_rev" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_rev"/>
+      <keyMapping columnObjectName="TnM_WR_VSOE" columnName="id_ver_rev"/>
+    </attribute>
+    <attribute id="str_elem_id" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_elem_id"/>
+      <keyMapping columnObjectName="TnM_WR_VSOE" columnName="str_elem_id"/>
+    </attribute>
+    <attribute id="wr_calc_type" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="wr_calc_type"/>
+      <keyMapping columnObjectName="TnM_WR_VSOE" columnName="wr_calc_type"/>
+    </attribute>
+    <attribute id="period" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="TnM_WR_VSOE" columnName="period"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="TnMWr_PC" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TnMWr_PC"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="TnM_WR_VSOE" columnName="TnMWr_PC"/>
+    </measure>
+    <measure id="VSOE_TnM_PC" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="VSOE_TnM_PC"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="TnM_WR_VSOE" columnName="VSOE_TnM_PC"/>
+    </measure>
+    <measure id="VSOE_Risk_PC" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="VSOE_Risk_PC"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="TnM_WR_VSOE" columnName="VSOE_Risk_PC"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="VSOE_Total" order="8" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="VSOE_Total"/>
+      <formula>&quot;VSOE_TnM_PC&quot;+&quot;VSOE_Risk_PC&quot;</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

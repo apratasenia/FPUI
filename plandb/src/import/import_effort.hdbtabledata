@@ -17,20 +17,16 @@
 		"period",
 		"attributeId.ID",
 		"effort",
-		"unit",
-		"id" ]
+		"unit"
+		]
 		},
 	"column_mappings": {
 	    "period": 1,
 		"attributeId.ID": 2 ,
 		"effort": 3,
-		"unit": 4,
-		"id": 5
+		"unit": 4
+
 				}
-		
-	
-	
-		
 	}
 	]
 	}

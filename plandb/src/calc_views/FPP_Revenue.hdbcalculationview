@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::FPP_Revenue" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="FPP_Revenue"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::StrElotalExpPeriod">
+    <resourceUri>plan_it.plandb.calc_views::StrElotalExpPeriod</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.PlanStructure">
+    <resourceUri>plan_it.plandb::data.PlanStructure</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::StrElTotalExp">
+    <resourceUri>plan_it.plandb.calc_views::StrElTotalExp</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.Version">
+    <resourceUri>plan_it.plandb::data.Version</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="version_id">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_element">
+        <descriptions defaultDescription="str_element"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="WorkExpPC" aggregationType="sum">
+        <descriptions defaultDescription="WorkExpPC"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency">
+        <descriptions defaultDescription="contract_currency"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="fpp_amount" aggregationType="sum">
+        <descriptions defaultDescription="fpp_amount"/>
+      </viewAttribute>
+      <viewAttribute id="id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="tr_calc_type">
+        <descriptions defaultDescription="tr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_1" aggregationType="sum">
+        <descriptions defaultDescription="version_id_1"/>
+      </viewAttribute>
+      <viewAttribute id="wr_calc_type">
+        <descriptions defaultDescription="wr_calc_type"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb.calc_views::StrElotalExpPeriod">
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WorkExpPC" source="WorkExpPC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_pc" source="tr_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_exp_pc" source="tr_eff_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses" source="Total_Expenses"/>
+    </input>
+    <input node="plan_it.plandb::data.PlanStructure">
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency" source="contract_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="fpp_amount" source="fpp_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type" source="tr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_1" source="version.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wr_calc_type" source="wr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="id"/>
+    </input>
+    <filter>&quot;wr_calc_type&quot;='FPP'</filter>
+    <joinAttribute name="str_element"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_element" aggregationType="sum">
+        <descriptions defaultDescription="str_element"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="WorkExpPC" aggregationType="sum">
+        <descriptions defaultDescription="WorkExpPC"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses_period" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency">
+        <descriptions defaultDescription="contract_currency"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="fpp_amount" aggregationType="sum">
+        <descriptions defaultDescription="fpp_amount"/>
+      </viewAttribute>
+      <viewAttribute id="id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="tr_calc_type">
+        <descriptions defaultDescription="tr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_1" aggregationType="sum">
+        <descriptions defaultDescription="version_id_1"/>
+      </viewAttribute>
+      <viewAttribute id="wr_calc_type">
+        <descriptions defaultDescription="wr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_2">
+        <descriptions defaultDescription="version_id_2"/>
+      </viewAttribute>
+      <viewAttribute id="str_element_1">
+        <descriptions defaultDescription="str_element_1"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses_1"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WorkExpPC" source="WorkExpPC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_pc" source="tr_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_exp_pc" source="tr_eff_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses_period" source="Total_Expenses"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency" source="contract_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="fpp_amount" source="fpp_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type" source="tr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_1" source="version_id_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wr_calc_type" source="wr_calc_type"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::StrElTotalExp">
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_2" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element_1" source="str_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses" source="Total_Expenses"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_element"/>
+    </input>
+    <joinAttribute name="str_element"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_element" aggregationType="sum">
+        <descriptions defaultDescription="str_element"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="WorkExpPC" aggregationType="sum">
+        <descriptions defaultDescription="WorkExpPC"/>
+      </viewAttribute>
+      <viewAttribute id="tr_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="tr_eff_exp_pc" aggregationType="sum">
+        <descriptions defaultDescription="tr_eff_exp_pc"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses_period" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses_period"/>
+      </viewAttribute>
+      <viewAttribute id="contract_currency">
+        <descriptions defaultDescription="contract_currency"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="fpp_amount" aggregationType="sum">
+        <descriptions defaultDescription="fpp_amount"/>
+      </viewAttribute>
+      <viewAttribute id="id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="tr_calc_type">
+        <descriptions defaultDescription="tr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_1" aggregationType="sum">
+        <descriptions defaultDescription="version_id_1"/>
+      </viewAttribute>
+      <viewAttribute id="wr_calc_type">
+        <descriptions defaultDescription="wr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="version_id_2">
+        <descriptions defaultDescription="version_id_2"/>
+      </viewAttribute>
+      <viewAttribute id="str_element_1">
+        <descriptions defaultDescription="str_element_1"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses"/>
+      </viewAttribute>
+      <viewAttribute id="currency">
+        <descriptions defaultDescription="currency"/>
+      </viewAttribute>
+      <viewAttribute id="description_1">
+        <descriptions defaultDescription="description_1"/>
+      </viewAttribute>
+      <viewAttribute id="endDate">
+        <descriptions defaultDescription="endDate"/>
+      </viewAttribute>
+      <viewAttribute id="id_1" aggregationType="sum">
+        <descriptions defaultDescription="id_1"/>
+      </viewAttribute>
+      <viewAttribute id="startDate">
+        <descriptions defaultDescription="startDate"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WorkExpPC" source="WorkExpPC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_exp_pc" source="tr_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_eff_exp_pc" source="tr_eff_exp_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses_period" source="Total_Expenses_period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="contract_currency" source="contract_currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="fpp_amount" source="fpp_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tr_calc_type" source="tr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_1" source="version_id_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wr_calc_type" source="wr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id_2" source="version_id_2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_element_1" source="str_element_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses" source="Total_Expenses"/>
+    </input>
+    <input node="plan_it.plandb::data.Version">
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency" source="currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description_1" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="endDate" source="endDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_1" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="startDate" source="startDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="id"/>
+    </input>
+    <joinAttribute name="version_id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_3">
+  <attributes>
+    <attribute id="version_id" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id"/>
+      <keyMapping columnObjectName="Join_3" columnName="version_id"/>
+    </attribute>
+    <attribute id="str_element" order="3" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_element"/>
+      <keyMapping columnObjectName="Join_3" columnName="str_element"/>
+    </attribute>
+    <attribute id="contract_currency" order="4" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="contract_currency"/>
+      <keyMapping columnObjectName="Join_3" columnName="contract_currency"/>
+    </attribute>
+    <attribute id="fpp_amount" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="fpp_amount"/>
+      <keyMapping columnObjectName="Join_3" columnName="fpp_amount"/>
+    </attribute>
+    <attribute id="Total_Expenses" order="6" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Total_Expenses"/>
+      <keyMapping columnObjectName="Join_3" columnName="Total_Expenses"/>
+    </attribute>
+    <attribute id="startDate" order="7" displayAttribute="false" attributeHierarchyActive="false" semanticType="date.businessDateFrom">
+      <descriptions defaultDescription="startDate"/>
+      <keyMapping columnObjectName="Join_3" columnName="startDate"/>
+    </attribute>
+    <attribute id="currency" order="8" semanticType="currencyCode" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency"/>
+      <keyMapping columnObjectName="Join_3" columnName="currency"/>
+    </attribute>
+    <attribute id="Total_Expenses_period" order="9" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Total_Expenses_period"/>
+      <keyMapping columnObjectName="Join_3" columnName="Total_Expenses_period"/>
+    </attribute>
+    <attribute id="period" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Join_3" columnName="period"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="FPP_Revenue_PC" order="1" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE" semanticType="amount">
+      <descriptions defaultDescription="FPP_Revenue_PC"/>
+      <unitCurrencyAttribute attributeName="currency"/>
+      <currencyConversion errorHandling="keepUnconverted" generateOutputUnitCurrencyAttribute="false" convert="true">
+        <client>
+          <value>000</value>
+        </client>
+        <currencyConversionTables rates="plan_it.plandb::conv.TCURR" configuration="plan_it.plandb::conv.TCURV" prefactors="plan_it.plandb::conv.TCURF" notations="plan_it.plandb::conv.TCURN" precisions="plan_it.plandb::conv.TCURX"/>
+        <outputDataType datatype="DECIMAL" length="17" scale="2"/>
+        <sourceCurrency>
+          <attribute attributeName="contract_currency"/>
+        </sourceCurrency>
+        <targetCurrency>
+          <attribute attributeName="currency"/>
+        </targetCurrency>
+        <referenceDate>
+          <attribute attributeName="startDate"/>
+        </referenceDate>
+        <exchangeRateType>M</exchangeRateType>
+      </currencyConversion>
+      <formula>&quot;Total_Expenses_period&quot;/&quot;Total_Expenses&quot;*&quot;fpp_amount&quot;</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure></calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="95" y="411"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::StrElotalExpPeriod" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.PlanStructure" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="305"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::StrElTotalExp" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="212"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="93" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.Version" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="430" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

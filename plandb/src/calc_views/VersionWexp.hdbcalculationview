@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::VersionWexp" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="VersionWexp"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::StrElementWe">
+    <resourceUri>plan_it.plandb.calc_views::StrElementWe</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="plan_it.plandb.calc_views::StrElementWe">
+  <attributes>
+    <attribute id="version_id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id"/>
+      <keyMapping columnObjectName="StrElementWe" columnName="version_id"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="WorkExpPC" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WorkExpPC"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="StrElementWe" columnName="WorkExpPC"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

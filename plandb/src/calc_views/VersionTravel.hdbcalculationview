@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::VersionTravel" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="VersionTravel"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::StrElementTravel">
+    <resourceUri>plan_it.plandb.calc_views::StrElementTravel</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="plan_it.plandb.calc_views::StrElementTravel">
+  <attributes>
+    <attribute id="id_ver_res" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_res"/>
+      <keyMapping columnObjectName="StrElementTravel" columnName="id_ver_res"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="tr_exp_pc" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_exp_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="StrElementTravel" columnName="tr_exp_pc"/>
+    </measure>
+    <measure id="tr_eff_exp_pc" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_eff_exp_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="StrElementTravel" columnName="tr_eff_exp_pc"/>
+    </measure>
+    <measure id="tr_eff_exp_rev_pc" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_eff_exp_rev_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="StrElementTravel" columnName="tr_eff_exp_rev_pc"/>
+    </measure>
+    <measure id="tr_exp_rev_pc" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="tr_exp_rev_pc"/>
+      <measureMapping schemaName="PLAN_IT_1" columnObjectName="StrElementTravel" columnName="tr_exp_rev_pc"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

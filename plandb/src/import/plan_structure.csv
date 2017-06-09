@@ -1,3 +1,15 @@
-1,Development,FPP,NOREV,1000000,USD,1
-2,Development,TNM,NOREV,10,USD,2
-3,Development2,TNM,LSUMD,10,EUR,2
+1,FPP Development,FPP,NOREV,200000,EUR,1,0
+2,Development,TNM,LSUMD,0,USD,2,0
+4,Cost 1, , ,0, ,1,1
+5,Cost 2, , ,0, ,1,1
+6,TNM Development,TNM,LSUMD,0,USD,1,0
+7,Cost 1-TNM, , ,0, ,1,6
+8,Cost 2-TNM, , ,0, ,1,6
+9,TNM Development 2,TNM,LSUMD,0,USD,1,0
+10,Cost 3-TNM, , ,0, ,1,9
+11,Cost 4-TNM, , ,0, ,1,9
+12,Cost 1, , ,0, ,2,2
+13,Cost 2, , ,0, ,2,2
+14,FPP Revenue,FPP,NOREV,100000,USD,3,0
+15,Cost 1, , ,0,USD,3,14
+16,Cost 2, , ,0,USD,3,14

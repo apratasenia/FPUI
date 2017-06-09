@@ -14,7 +14,7 @@
 		
 	"import_settings": {
 	"import_columns": [
-		"ID",
+        "ID",
 		"resource.id",
 		"str_elemet.id",
 		"revenue_rate.id",
@@ -23,7 +23,7 @@
 		"remote_percent" ]
 		},
 	"column_mappings": {
-	    "ID": 1,
+	    "ID":1,
 		"resource.id": 2 ,
 		"str_elemet.id": 3,
 		"revenue_rate.id": 4,

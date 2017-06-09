@@ -1,0 +1,29 @@
+namespace "plan_it"."plandb";
+context history {
+
+    type BusinessKey : Integer;
+    type Currency : String(3);
+    type Amount : Decimal(17, 2);
+
+    entity VersionRevenueHistory {
+    key surr_id    : BusinessKey;
+    key version_id : BusinessKey;
+        TotalRevenue : Amount;
+        changeTime  : UTCTimestamp;
+        validFrom   : LocalDate;
+        validTo : LocalDate;
+        currentFlag : String(1);
+        
+    }
+    
+    entity RevenueRateHistory {
+        key surr_id      : BusinessKey;
+        key id   : BusinessKey;
+            list_rate_tc : Amount;
+            changeTime   : UTCTimestamp;
+            validFrom    : LocalDate;
+            validTo      : LocalDate;
+            currentFlag  : String(1);
+    }
+
+}

@@ -1,0 +1,39 @@
+PROCEDURE "plan_it.plandb.procedures::create_planAttribute" (
+in newPlanAttr "plan_it.plandb::data.PlanAttributes",
+out tt_errors "plan_it.plandb::data.procedures.errors"
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+declare lv_id integer;
+declare lv_resource integer;
+declare lv_revenue_rate  integer;
+declare lv_travel_variant integer;
+declare lv_str_element integer;
+declare lv_version integer;
+select 
+       "resource.id" ,
+       "str_elemet.id",
+       "travel_variant.id",
+       "revenue_rate.id",
+       "version.id"
+       INTO 
+       lv_resource,lv_str_element,lv_travel_variant,lv_revenue_rate,lv_version from :newPlanAttr;
+select "plan_it.plandb.sequences::planAttributesId".NEXTVAL into lv_id from "plan_it.plandb.synonyms::DUMMY";
+IF lv_id = 0 THEN
+tt_errors = SELECT 500 AS "http_status_code",
+                    'Error during creation' AS "error_message",
+                    'Error during creation' AS "detail" FROM "plan_it.plandb.synonyms::DUMMY";
+ELSE
+INSERT INTO "plan_it.plandb::data.PlanAttributes" VALUES(
+lv_id,
+lv_resource,
+lv_str_element,
+lv_revenue_rate,
+lv_travel_variant,
+lv_version,
+0);
+END IF;
+END

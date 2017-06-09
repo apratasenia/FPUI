@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_view_resource::ResTnMWrVSOE" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="ResTnMWrVSOE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb::data.PlanAttributes">
+    <resourceUri>plan_it.plandb::data.PlanAttributes</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.EffortPlanning">
+    <resourceUri>plan_it.plandb::data.EffortPlanning</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.PlanStructure">
+    <resourceUri>plan_it.plandb::data.PlanStructure</resourceUri>
+  </DataSource>
+  <DataSource id="Join_3$$$$plan_it.plandb::data.PlanStructure$$">
+    <resourceUri>plan_it.plandb::data.PlanStructure</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::RevRateConv">
+    <resourceUri>plan_it.plandb.calc_views::RevRateConv</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="referential">
+    <viewAttributes>
+      <viewAttribute id="ID" aggregationType="sum">
+        <descriptions defaultDescription="ID"/>
+      </viewAttribute>
+      <viewAttribute id="remote_percent" aggregationType="sum">
+        <descriptions defaultDescription="remote_percent"/>
+      </viewAttribute>
+      <viewAttribute id="resource_id" aggregationType="sum">
+        <descriptions defaultDescription="resource_id"/>
+      </viewAttribute>
+      <viewAttribute id="revenue_rate_id" aggregationType="sum">
+        <descriptions defaultDescription="revenue_rate_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_elemet_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elemet_id"/>
+      </viewAttribute>
+      <viewAttribute id="travel_variant_id" aggregationType="sum">
+        <descriptions defaultDescription="travel_variant_id"/>
+      </viewAttribute>
+      <viewAttribute id="version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb::data.PlanAttributes">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="remote_percent" source="remote_percent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="resource.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="revenue_rate_id" source="revenue_rate.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elemet_id" source="str_elemet.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="travel_variant_id" source="travel_variant.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version.id"/>
+    </input>
+    <input node="plan_it.plandb::data.EffortPlanning">
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="attributeId.ID"/>
+    </input>
+    <joinAttribute name="ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID" aggregationType="sum">
+        <descriptions defaultDescription="ID"/>
+      </viewAttribute>
+      <viewAttribute id="remote_percent" aggregationType="sum">
+        <descriptions defaultDescription="remote_percent"/>
+      </viewAttribute>
+      <viewAttribute id="resource_id" aggregationType="sum">
+        <descriptions defaultDescription="resource_id"/>
+      </viewAttribute>
+      <viewAttribute id="revenue_rate_id" aggregationType="sum">
+        <descriptions defaultDescription="revenue_rate_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_elemet_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elemet_id"/>
+      </viewAttribute>
+      <viewAttribute id="travel_variant_id" aggregationType="sum">
+        <descriptions defaultDescription="travel_variant_id"/>
+      </viewAttribute>
+      <viewAttribute id="version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+      <viewAttribute id="parent_id" aggregationType="sum">
+        <descriptions defaultDescription="parent_id"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$id$str_elemet_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb::data.PlanStructure">
+      <mapping xsi:type="Calculation:AttributeMapping" target="parent_id" source="parent.id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$id$str_elemet_id" source="id"/>
+    </input>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="remote_percent" source="remote_percent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="resource_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="revenue_rate_id" source="revenue_rate_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elemet_id" source="str_elemet_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="travel_variant_id" source="travel_variant_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$id$str_elemet_id" source="str_elemet_id"/>
+    </input>
+    <joinAttribute name="JOIN$id$str_elemet_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID" aggregationType="sum">
+        <descriptions defaultDescription="ID"/>
+      </viewAttribute>
+      <viewAttribute id="remote_percent" aggregationType="sum">
+        <descriptions defaultDescription="remote_percent"/>
+      </viewAttribute>
+      <viewAttribute id="resource_id" aggregationType="sum">
+        <descriptions defaultDescription="resource_id"/>
+      </viewAttribute>
+      <viewAttribute id="revenue_rate_id" aggregationType="sum">
+        <descriptions defaultDescription="revenue_rate_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_elemet_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elemet_id"/>
+      </viewAttribute>
+      <viewAttribute id="travel_variant_id" aggregationType="sum">
+        <descriptions defaultDescription="travel_variant_id"/>
+      </viewAttribute>
+      <viewAttribute id="version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+      <viewAttribute id="parent_id" aggregationType="sum">
+        <descriptions defaultDescription="parent_id"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="wr_calc_type">
+        <descriptions defaultDescription="wr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$id$parent_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_3$$$$plan_it.plandb::data.PlanStructure$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wr_calc_type" source="wr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$id$parent_id" source="id"/>
+    </input>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="remote_percent" source="remote_percent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="resource_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="revenue_rate_id" source="revenue_rate_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elemet_id" source="str_elemet_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="travel_variant_id" source="travel_variant_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="parent_id" source="parent_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$id$parent_id" source="parent_id"/>
+    </input>
+    <joinAttribute name="JOIN$id$parent_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID" aggregationType="sum">
+        <descriptions defaultDescription="ID"/>
+      </viewAttribute>
+      <viewAttribute id="remote_percent" aggregationType="sum">
+        <descriptions defaultDescription="remote_percent"/>
+      </viewAttribute>
+      <viewAttribute id="resource_id" aggregationType="sum">
+        <descriptions defaultDescription="resource_id"/>
+      </viewAttribute>
+      <viewAttribute id="revenue_rate_id" aggregationType="sum">
+        <descriptions defaultDescription="revenue_rate_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_elemet_id" aggregationType="sum">
+        <descriptions defaultDescription="str_elemet_id"/>
+      </viewAttribute>
+      <viewAttribute id="travel_variant_id" aggregationType="sum">
+        <descriptions defaultDescription="travel_variant_id"/>
+      </viewAttribute>
+      <viewAttribute id="version_id" aggregationType="sum">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="effort" aggregationType="sum">
+        <descriptions defaultDescription="effort"/>
+      </viewAttribute>
+      <viewAttribute id="unit">
+        <descriptions defaultDescription="unit"/>
+      </viewAttribute>
+      <viewAttribute id="parent_id" aggregationType="sum">
+        <descriptions defaultDescription="parent_id"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="wr_calc_type">
+        <descriptions defaultDescription="wr_calc_type"/>
+      </viewAttribute>
+      <viewAttribute id="currency_pc_ver_rev">
+        <descriptions defaultDescription="currency_pc_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute id="currency_tc_rev">
+        <descriptions defaultDescription="currency_tc_rev"/>
+      </viewAttribute>
+      <viewAttribute id="list_rate_tc">
+        <descriptions defaultDescription="list_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="list_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="list_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_tc" aggregationType="sum">
+        <descriptions defaultDescription="disc_rate_tc"/>
+      </viewAttribute>
+      <viewAttribute id="disc_rate_pc" aggregationType="sum">
+        <descriptions defaultDescription="disc_rate_pc"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_rev">
+        <descriptions defaultDescription="id_ver_rev"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$rev_rate_id$revenue_rate_id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb.calc_views::RevRateConv">
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_pc_ver_rev" source="currency_pc_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_tc_rev" source="currency_tc_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="list_rate_tc" source="list_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="list_rate_pc" source="list_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_tc" source="disc_rate_tc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="disc_rate_pc" source="disc_rate_pc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_rev" source="id_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$rev_rate_id$revenue_rate_id" source="rev_rate_id"/>
+    </input>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="remote_percent" source="remote_percent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="resource_id" source="resource_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="revenue_rate_id" source="revenue_rate_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_elemet_id" source="str_elemet_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="travel_variant_id" source="travel_variant_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="effort" source="effort"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="parent_id" source="parent_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="wr_calc_type" source="wr_calc_type"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$rev_rate_id$revenue_rate_id" source="revenue_rate_id"/>
+    </input>
+    <joinAttribute name="JOIN$rev_rate_id$revenue_rate_id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_4">
+  <attributes>
+    <attribute id="ID" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_4" columnName="ID"/>
+    </attribute>
+    <attribute id="remote_percent" order="3" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="remote_percent"/>
+      <keyMapping columnObjectName="Join_4" columnName="remote_percent"/>
+    </attribute>
+    <attribute id="resource_id" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="resource_id"/>
+      <keyMapping columnObjectName="Join_4" columnName="resource_id"/>
+    </attribute>
+    <attribute id="revenue_rate_id" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="revenue_rate_id"/>
+      <keyMapping columnObjectName="Join_4" columnName="revenue_rate_id"/>
+    </attribute>
+    <attribute id="str_elemet_id" order="6" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_elemet_id"/>
+      <keyMapping columnObjectName="Join_4" columnName="str_elemet_id"/>
+    </attribute>
+    <attribute id="travel_variant_id" order="7" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="travel_variant_id"/>
+      <keyMapping columnObjectName="Join_4" columnName="travel_variant_id"/>
+    </attribute>
+    <attribute id="version_id" order="8" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id"/>
+      <keyMapping columnObjectName="Join_4" columnName="version_id"/>
+    </attribute>
+    <attribute id="period" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Join_4" columnName="period"/>
+    </attribute>
+    <attribute id="effort" order="10" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="effort"/>
+      <keyMapping columnObjectName="Join_4" columnName="effort"/>
+    </attribute>
+    <attribute id="unit" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="unit"/>
+      <keyMapping columnObjectName="Join_4" columnName="unit"/>
+    </attribute>
+    <attribute id="parent_id" order="12" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="parent_id"/>
+      <keyMapping columnObjectName="Join_4" columnName="parent_id"/>
+    </attribute>
+    <attribute id="description" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="description"/>
+      <keyMapping columnObjectName="Join_4" columnName="description"/>
+    </attribute>
+    <attribute id="wr_calc_type" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="wr_calc_type"/>
+      <keyMapping columnObjectName="Join_4" columnName="wr_calc_type"/>
+    </attribute>
+    <attribute id="currency_pc_ver_rev" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_pc_ver_rev"/>
+      <keyMapping columnObjectName="Join_4" columnName="currency_pc_ver_rev"/>
+    </attribute>
+    <attribute id="currency_tc_rev" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_tc_rev"/>
+      <keyMapping columnObjectName="Join_4" columnName="currency_tc_rev"/>
+    </attribute>
+    <attribute id="list_rate_tc" order="17" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="list_rate_tc"/>
+      <keyMapping columnObjectName="Join_4" columnName="list_rate_tc"/>
+    </attribute>
+    <attribute id="list_rate_pc" order="18" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="list_rate_pc"/>
+      <keyMapping columnObjectName="Join_4" columnName="list_rate_pc"/>
+    </attribute>
+    <attribute id="disc_rate_tc" order="19" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_tc"/>
+      <keyMapping columnObjectName="Join_4" columnName="disc_rate_tc"/>
+    </attribute>
+    <attribute id="disc_rate_pc" order="20" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="disc_rate_pc"/>
+      <keyMapping columnObjectName="Join_4" columnName="disc_rate_pc"/>
+    </attribute>
+  
+    <attribute id="id_ver_rev" order="27" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_rev"/>
+  
+      <keyMapping columnObjectName="Join_4" columnName="id_ver_rev"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="TnMWR_PC" order="1" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="17" scale="4">
+      <descriptions defaultDescription="TnMWR_PC"/>
+      <formula>if(&quot;wr_calc_type&quot; = 'TNM',&quot;disc_rate_pc&quot;*&quot;effort&quot;,0)</formula>
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="VSOETnM_TC" order="21" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="VSOETnM_TC"/>
+      <formula>&quot;effort&quot;*&quot;list_rate_tc&quot;/1.15</formula>
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="VSOETnM_PC" order="22" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" expressionLanguage="COLUMN_ENGINE" scale="2">
+      <descriptions defaultDescription="VSOETnM_PC"/>
+      <formula>&quot;effort&quot;*&quot;list_rate_pc&quot;/1.15</formula>
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="PlValTnM_TC" order="23" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="PlValTnM_TC"/>
+      <formula>if(&quot;wr_calc_type&quot;='TNM',&quot;effort&quot;*&quot;disc_rate_tc&quot;,0)</formula>
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="PlValTnM_PC" order="24" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" expressionLanguage="COLUMN_ENGINE" scale="2">
+      <descriptions defaultDescription="PlValTnM_PC"/>
+      <formula>if(&quot;wr_calc_type&quot;='TNM',&quot;effort&quot;*&quot;disc_rate_pc&quot;,0)</formula>
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="VSOERisk_TC" order="25" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" expressionLanguage="COLUMN_ENGINE" scale="2">
+      <descriptions defaultDescription="VSOERisk_TC"/>
+      <formula>if(&quot;wr_calc_type&quot;='FPP',&quot;effort&quot; * &quot;list_rate_tc&quot; / 1.15  * 0.1,0)</formula>
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="VSOERisk_PC" order="26" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" expressionLanguage="COLUMN_ENGINE" scale="2">
+      <descriptions defaultDescription="VSOERisk_PC"/>
+      <formula>if(&quot;wr_calc_type&quot;='FPP',&quot;effort&quot; * &quot;list_rate_pc&quot; / 1.15  * 0.1, 0)</formula>
+      
+      
+      
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="106" y="515"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.PlanAttributes" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.EffortPlanning" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="106" y="413"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.PlanStructure" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="106" y="321"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.PlanStructure" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="106" y="217"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::RevRateConv" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario> 

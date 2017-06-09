@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_view_version::VersionSummary" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="VersionSummary"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_view_version::VersionRevenue">
+    <resourceUri>plan_it.plandb.calc_view_version::VersionRevenue</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_view_version::VersionExpense">
+    <resourceUri>plan_it.plandb.calc_view_version::VersionExpense</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_view_version::VersionVSOE">
+    <resourceUri>plan_it.plandb.calc_view_version::VersionVSOE</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb::data.Version">
+    <resourceUri>plan_it.plandb::data.Version</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="Total_Revenue" aggregationType="sum">
+        <descriptions defaultDescription="Revenue_PC"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_res">
+        <descriptions defaultDescription="id_ver_res"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb.calc_view_version::VersionRevenue">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Revenue" source="TotalRevenue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="version_id"/>
+    </input>
+    <input node="plan_it.plandb.calc_view_version::VersionExpense">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses" source="Total_Expenses"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_res"/>
+    </input>
+    <joinAttribute name="id_ver_res"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="Total_Revenue" aggregationType="sum">
+        <descriptions defaultDescription="Total_Revenue"/>
+      </viewAttribute>
+      <viewAttribute id="id_ver_res" aggregationType="sum">
+        <descriptions defaultDescription="id_ver_res"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses"/>
+      </viewAttribute>
+      <viewAttribute id="VSOE" aggregationType="sum">
+        <descriptions defaultDescription="VSOE"/>
+      </viewAttribute>
+    
+      <viewAttribute id="currency_pc_ver_rev">
+        <descriptions defaultDescription="currency_pc_ver_rev"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Revenue" source="Total_Revenue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_res"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses" source="Total_Expenses"/>
+    </input>
+    <input node="plan_it.plandb.calc_view_version::VersionVSOE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VSOE" source="VSOE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_pc_ver_rev" source="currency_pc_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_rev"/>
+    </input>
+    <joinAttribute name="id_ver_res"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="id" aggregationType="sum">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Revenue" aggregationType="sum">
+        <descriptions defaultDescription="Total_Revenue"/>
+      </viewAttribute>
+      <viewAttribute id="Total_Expenses" aggregationType="sum">
+        <descriptions defaultDescription="Total_Expenses"/>
+      </viewAttribute>
+      <viewAttribute id="VSOE" aggregationType="sum">
+        <descriptions defaultDescription="VSOE"/>
+      </viewAttribute>
+      <viewAttribute id="currency_pc_ver_rev">
+        <descriptions defaultDescription="currency_pc_ver_rev"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb::data.Version">
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+    </input>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Revenue" source="Total_Revenue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Total_Expenses" source="Total_Expenses"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VSOE" source="VSOE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="currency_pc_ver_rev" source="currency_pc_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id_ver_res"/>
+    </input>
+    <joinAttribute name="id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_3">
+  <attributes>
+    <attribute id="version_id" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="Join_3" columnName="id"/>
+    </attribute>
+    <attribute id="Total_Revenue" order="6" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Total_Revenue"/>
+      <keyMapping columnObjectName="Join_3" columnName="Total_Revenue"/>
+    </attribute>
+    <attribute id="Total_Expenses" order="7" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Total_Expenses"/>
+      <keyMapping columnObjectName="Join_3" columnName="Total_Expenses"/>
+    </attribute>
+    <attribute id="VSOE" order="8" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VSOE"/>
+      <keyMapping columnObjectName="Join_3" columnName="VSOE"/>
+    </attribute>
+    <attribute id="currency_pc_ver_rev" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="currency_pc_ver_rev"/>
+      <keyMapping columnObjectName="Join_3" columnName="currency_pc_ver_rev"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="Contribution" order="1" aggregationType="sum" measureType="simple" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="Contribution"/>
+      <formula>&quot;Total_Revenue&quot;-&quot;Total_Expenses&quot;</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="Profitability" order="2" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="Profitability"/>
+      <formula>if(&quot;Total_Revenue&quot;!=0,
+&quot;Contribution&quot;/&quot;Total_Revenue&quot;*100,0)</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="VsoeDeviation" order="3" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="Vsoe_deviation"/>
+      <formula>if (&quot;VSOE&quot; != 0,(&quot;Total_Revenue&quot;-&quot;VSOE&quot;)/&quot;VSOE&quot; * 100,0)</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="VSOEState" order="4" aggregationType="count" measureType="simple" datatype="VARCHAR" length="13" expressionLanguage="COLUMN_ENGINE">
+      <descriptions defaultDescription="VSOEState"/>
+      <formula>if(&quot;VsoeDeviation&quot; &gt; 15, chars('Érror'), chars('Success'))</formula>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="389"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_view_version::VersionRevenue" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_view_version::VersionExpense" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="281"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_view_version::VersionVSOE" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="245" y="183"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb::data.Version" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

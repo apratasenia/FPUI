@@ -1,0 +1,51 @@
+PROCEDURE "plan_it.plandb.procedures::create_effort" (IN im_eff_amount DECIMAL(15,2),
+im_period NVARCHAR(8)
+  )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+     AS
+BEGIN
+declare lv_effort_id integer;
+declare lv_eff_amount DECIMAL(15,2);
+declare lv_unit nvarchar(3);
+declare lv_period NVARCHAR(8);
+
+                      
+                      
+                     lv_eff_amount = :im_eff_amount;
+                     lv_period = :im_period;
+select (max("id")+1) into lv_effort_id from "plan_it.plandb::data.EffortPlanning";
+
+
+
+
+lv_unit := 'H';
+
+
+ if :lv_effort_id = 0 then
+ 
+  
+  
+else
+
+                      
+If :lv_eff_amount = 0 then
+
+
+
+
+
+else
+
+         			
+	INSERT INTO "plan_it.plandb::data.EffortPlanning" VALUES(
+	lv_period/*period <NVARCHAR(6)>*/,
+	2/*attributeId.ID <INTEGER>*/,
+	lv_eff_amount/*effort <DECIMAL>*/,
+	lv_unit/*unit <NVARCHAR(3)>*/
+	
+);			
+        			
+ end if;
+end if;
+ END;

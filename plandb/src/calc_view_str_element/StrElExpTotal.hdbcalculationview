@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_view_str_element::StrElExpTotal" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="StrElExpTotal"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_view_str_element::StrElExpPeriodTotal">
+    <resourceUri>plan_it.plandb.calc_view_str_element::StrElExpPeriodTotal</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="plan_it.plandb.calc_view_str_element::StrElExpPeriodTotal">
+  <attributes>
+    <attribute id="id_ver_res" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id_ver_res"/>
+      <keyMapping columnObjectName="StrElExpPeriodTotal" columnName="id_ver_res"/>
+    </attribute>
+  
+    <attribute id="parent_id" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="parent_id"/>
+      <keyMapping columnObjectName="StrElExpPeriodTotal" columnName="parent_id"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Total_Expenses" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total_Expenses"/>
+      <measureMapping schemaName="PLAN_IT_2" columnObjectName="StrElExpPeriodTotal" columnName="Total_Expenses"/>
+    </measure></baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

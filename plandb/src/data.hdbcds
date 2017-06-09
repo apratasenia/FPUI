@@ -1,211 +1,272 @@
 namespace "plan_it"."plandb";
 
-@OData.publish: true
-context data{
- 
-/*@@layout{"layoutInfo":{"x":-1525,"y":-699.5}}*/
-type BusinessKey : Integer;
+@OData.publish:true
+context data {
 
-/*@@layout{"layoutInfo":{"x":-1267,"y":-699.5}}*/
-type Description : String(80);
+    /*@@layout{"layoutInfo":{"x":-1525,"y":-699.5}}*/
+    type BusinessKey : Integer;
 
-/*@@layout{"layoutInfo":{"x":-1016,"y":-699.5}}*/
-type Currency : String(3);
+    /*@@layout{"layoutInfo":{"x":-1267,"y":-699.5}}*/
+    type Description : String(80);
 
-/*@@layout{"layoutInfo":{"x":-773,"y":-699.5}}*/
-type Amount : Decimal(17,2);
+    /*@@layout{"layoutInfo":{"x":-1016,"y":-699.5}}*/
+    type Currency : String(3);
 
-/*@@layout{"layoutInfo":{"x":-514,"y":-699.5}}*/
-type Date : LocalDate;
+    /*@@layout{"layoutInfo":{"x":-773,"y":-699.5}}*/
+    type Amount : Decimal(17, 2);
 
-/*@@layout{"layoutInfo":{"x":-854,"y":-564.5}}*/
-entity Version{
- key id : BusinessKey;
-description : Description;
-startDate : Date;
-endDate : Date;
-currency : Currency;
-};
+    /*@@layout{"layoutInfo":{"x":-514,"y":-699.5}}*/
+    type Date : LocalDate;
 
-/*@@layout{"layoutInfo":{"x":-1415,"y":-343.5}}*/
-entity Resource{
- key id : BusinessKey;
-description : Description;
-cost_rate_tc : Amount;
-currency_tc : Currency;
-version : Association[1..1] to Version {id};
-};
-
-/*@@layout{"layoutInfo":{"x":-239,"y":-312.5}}*/
-entity RevenueRate{
- key id : BusinessKey;
-description : Description;
-list_rate_tc : Amount;
-currency_tc : Currency;
-version : Association[1..1] to Version;
-discount : Percentage;
-};
-
-/*@@layout{"layoutInfo":{"x":-1525,"y":-622.5}}*/
-type Calc_type_wr : String(3);
-
-/*@@layout{"layoutInfo":{"x":-1297,"y":-622.5}}*/
-type Calc_type_tr : String(5);
-
-/*@@layout{"layoutInfo":{"x":-835,"y":-282.5}}*/
-entity PlanStructure{
- key id : BusinessKey;
-description : Description;
-wr_calc_type : Calc_type_wr;
-tr_calc_type : Calc_type_tr;
-fpp_amount : Amount;
-contract_currency : Currency;
-version : Association[1..1] to Version;
-};
-
-/*@@layout{"layoutInfo":{"x":16,"y":-76.5}}*/
-entity TravelVariant{
- key id : BusinessKey;
-trav_var_name : Description;
-calc_type_tv : Calc_type_tv;
-version : Association[0..1] to Version;
-work_cost_perc : Percentage;
-wd_trip : Decimal(17,1);
-add_wd_trip : Decimal(17,2);
-total_tr_eff : Amount;
-tr_cost_currency : Currency;
-transp_trip_tc : Amount;
-acc_day_tc : Amount;
-other_day_tc : Amount;
-trav_exp_reimb : Percentage;
-trav_eff_reimb : Percentage;
-tr_eff_lump_sum : Amount;
-tr_exp_lump_sum : Amount;
-str_element : Association[0..1] to PlanStructure;
-
-};
-
-/*@@layout{"layoutInfo":{"x":-1065,"y":-622.5}}*/
-type Calc_type_tv : String(1);
-
-/*@@layout{"layoutInfo":{"x":-790,"y":-630.5}}*/
-type Percentage : Decimal(10,2);
-
-/*@@layout{"layoutInfo":{"x":-1138,"y":-68.5}}*/
-entity PlanAttributes{
- key ID : BusinessKey;
-resource : Association[0..1] to Resource;
-str_elemet : Association[0..1] to PlanStructure;
-revenue_rate : Association[0..1] to RevenueRate;
-travel_variant : Association[0..1] to TravelVariant;
-version : Association[0..1] to Version;
-remote_percent : Percentage;
-};
-
-/*@@layout{"layoutInfo":{"x":-1666,"y":-62.5}}*/
-entity EffortPlanning{
- period : String(6);
-attributeId : Association[0..1] to PlanAttributes ;
-effort : Effort;
-unit : Unit;
-key id : BusinessKey;
-};
-
-/*@@layout{"layoutInfo":{"x":-525,"y":-630.5}}*/
-type Effort : Decimal(10,3);
-
-/*@@layout{"layoutInfo":{"x":-233,"y":-638.5}}*/
-type Unit : String(3);
-
-    view TravelVariantCalc as
-    select from TravelVariant
-    {
-        str_element.{
-            tr_calc_type,
-            description       as structure_element,
-            contract_currency
-        },
-        id,
-        trav_var_name,
-        calc_type_tv,
-        work_cost_perc,
-        wd_trip,
-        add_wd_trip,
-        total_tr_eff,
-        tr_cost_currency,
-        transp_trip_tc,
-        acc_day_tc,
-        other_day_tc,
-        trav_exp_reimb,
-        trav_eff_reimb,
-        tr_eff_lump_sum,
-
-        tr_exp_lump_sum,
-        version.{ 
-	startDate as start_date, 
-	currency as plan_currency
-	}
-            };
-
-      
-        
-
-
-    view PlAttrDetail as
-    select from PlanAttributes
-    {
-        ID,
-        resource.{
-            description   as resource_name
-        },
-        revenue_rate.{
-            description   as rev_rate_name
-        },
-        travel_variant.{
-            trav_var_name as trav_var_name
-        },
-        remote_percent,
-        str_elemet.{
-            description   as str_elem_name
-        },
-        version.id as version_id
+    /*@@layout{"layoutInfo":{"x":-853,"y":-567.5}}*/
+    entity Version {
+        key id          : BusinessKey;
+            description : Description;
+            startDate   : Date;
+            endDate     : Date;
+            currency    : Currency;
     };
-    
-    /*@@layout{"layoutInfo":{"inner":{"unconnected":[],"connected":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrWeHelp.PlanAttributes","x":-293,"y":-86}}}}*/
-view PlAttrWeHelp as
-    select from (PlanAttributes Inner join EffortPlanning on PlanAttributes.ID=EffortPlanning.attributeId.ID)
-    {PlanAttributes.ID, PlanAttributes.resource.id as resource_id,
-    PlanAttributes.str_elemet.id as str_element,
-    PlanAttributes.str_elemet.description as str_el_descr,
-    EffortPlanning.period, EffortPlanning.effort, EffortPlanning.unit, EffortPlanning.id as id_1};
 
-/*@@layout{"layoutInfo":{"x":404,"y":-584.5,"inner":{"unconnected":[],"connected":{"type":"JoinDS","id":"join_1","left":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrWr.PlanAttributes","x":-600,"y":-149},"right":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrWr.EffortPlanning","x":-277,"y":-192}}}}}*/
-view PlAttrWr as
-	select from (PlanAttributes Inner join EffortPlanning on PlanAttributes.ID=EffortPlanning.attributeId.ID){PlanAttributes.revenue_rate.{ 
-	id as rev_rate_id
-	}, PlanAttributes.ID as pl_attr_id, EffortPlanning.period, EffortPlanning.effort, EffortPlanning.unit, EffortPlanning.id, PlanAttributes.version.{ 
-	id as version_id
-	}, PlanAttributes.str_elemet.{ 
-	id as str_elem_id, 
-	description as str_elem_descr, 
-	wr_calc_type as wr_calc_type
-	}} ;
+    /*@@layout{"layoutInfo":{"x":-1415,"y":-343.5}}*/
+    entity Resource {
+        key id           : BusinessKey;
+            description  : Description;
+            cost_rate_tc : Amount;
+            currency_tc  : Currency;
+            version      : association[1..1] to Version { id };
+    };
 
-/*@@layout{"layoutInfo":{"x":798,"y":-588.5,"inner":{"unconnected":[],"connected":{"type":"JoinDS","id":"join_1","left":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrTravel.PlanAttributes","x":-765,"y":-222},"right":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrTravel.EffortPlanning","x":-344,"y":-256}}}}}*/
-view PlAttrTravel as
-	select from (PlanAttributes Inner join EffortPlanning on PlanAttributes.ID=EffortPlanning.attributeId.ID){PlanAttributes.ID, PlanAttributes.resource.{ 
-	id as resource_id
-	}, PlanAttributes.travel_variant.{ 
-	id as trave_variant, 
-	trav_var_name as trav_var_name, 
-	calc_type_tv as calc_type_tv
-	}, PlanAttributes.str_elemet.{ 
-	id as str_elem_id, 
+    /*@@layout{"layoutInfo":{"x":-239,"y":-312.5}}*/
+    entity RevenueRate {
+        key id           : BusinessKey;
+            description  : Description;
+            list_rate_tc : Amount;
+            currency_tc  : Currency;
+            version      : association[1..1] to Version;
+            discount     : Percentage;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-1525,"y":-622.5}}*/
+    type Calc_type_wr : String(3);
+
+    /*@@layout{"layoutInfo":{"x":-1297,"y":-622.5}}*/
+    type Calc_type_tr : String(5);
+
+    /*@@layout{"layoutInfo":{"x":-839,"y":-264.5}}*/
+    entity PlanStructure {
+        key id                : BusinessKey;
+            description       : Description;
+            wr_calc_type      : Calc_type_wr;
+            tr_calc_type      : Calc_type_tr;
+            fpp_amount        : Amount;
+            contract_currency : Currency;
+            version           : association[1..1] to Version;
+            parent            : association[0..1] to PlanStructure;
+    };
+
+    /*@@layout{"layoutInfo":{"x":16,"y":-76.5}}*/
+    entity TravelVariant {
+        key id               : BusinessKey;
+            trav_var_name    : Description;
+            calc_type_tv     : Calc_type_tv;
+            version          : association[0..1] to Version;
+            work_cost_perc   : Percentage;
+            wd_trip          : Decimal(17, 1);
+            add_wd_trip      : Decimal(17, 2);
+            total_tr_eff     : Amount;
+            tr_cost_currency : Currency;
+            transp_trip_tc   : Amount;
+            acc_day_tc       : Amount;
+            other_day_tc     : Amount;
+            trav_exp_reimb   : Percentage;
+            trav_eff_reimb   : Percentage;
+            tr_eff_lump_sum  : Amount;
+            tr_exp_lump_sum  : Amount;
+            str_element      : association[0..1] to PlanStructure;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-1065,"y":-622.5}}*/
+    type Calc_type_tv : String(1);
+
+    /*@@layout{"layoutInfo":{"x":-790,"y":-630.5}}*/
+    type Percentage : Decimal(10, 2);
+
+    /*@@layout{"layoutInfo":{"x":-1138,"y":-68.5}}*/
+    entity PlanAttributes {
+        key ID             : BusinessKey;
+            resource       : association[0..1] to Resource;
+            str_elemet     : association[0..1] to PlanStructure;
+            revenue_rate   : association[0..1] to RevenueRate;
+            travel_variant : association[0..1] to TravelVariant;
+            version        : association[0..1] to Version;
+            remote_percent : Percentage;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-1666,"y":-62.5}}*/
+    entity EffortPlanning {
+            period      : String(6);
+            attributeId : association[0..1] to PlanAttributes;
+            effort      : Effort;
+            unit        : Unit;
+        key id          : BusinessKey generated always as identity(start with 1 increment by 1 minvalue 1 no cycle);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-525,"y":-630.5}}*/
+    type Effort : Decimal(10, 3);
+
+    /*@@layout{"layoutInfo":{"x":6,"y":-241.5}}*/
+    type Unit : String(3);
+
+    /*@@layout{"layoutInfo":{"inner":{"unconnected":[],"connected":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.TravelVariantCalc.TravelVariant","x":-330,"y":-194}}}}*/
+view TravelVariantCalc as
+        select from (TravelVariant Inner join PlanStructure on TravelVariant.str_element.id=PlanStructure.id)
+        {TravelVariant.id, TravelVariant.trav_var_name, TravelVariant.calc_type_tv, TravelVariant.work_cost_perc, TravelVariant.wd_trip, TravelVariant.add_wd_trip, TravelVariant.total_tr_eff, TravelVariant.tr_cost_currency, TravelVariant.transp_trip_tc, TravelVariant.acc_day_tc, TravelVariant.other_day_tc, TravelVariant.trav_exp_reimb, TravelVariant.trav_eff_reimb, TravelVariant.tr_eff_lump_sum, TravelVariant.tr_exp_lump_sum, TravelVariant.str_element.{ 
+	id as structure_element_id, 
+	description as structure_element_descr
+	}, PlanStructure.parent.{ 
+	description as revenue_element_name, 
 	tr_calc_type as tr_calc_type, 
 	contract_currency as contract_currency
-	}, PlanAttributes.revenue_rate.{ 
-	id as rev_rate
-	}, PlanAttributes.remote_percent, EffortPlanning.effort, EffortPlanning.period, EffortPlanning.unit, EffortPlanning.id as effort_id};
+	}, TravelVariant.version.{ 
+	startDate as start_date, 
+	currency as plan_currency
+	}, PlanStructure.description as structure_element};
+
+    view PlAttrDetail as
+        select from PlanAttributes
+        {
+            ID,
+            resource.{
+                description   as resource_name
+            },
+            revenue_rate.{
+                description   as rev_rate_name
+            },
+            travel_variant.{
+                trav_var_name as trav_var_name
+            },
+            remote_percent,
+            str_elemet.{
+                description   as str_elem_name
+            },
+            version.id        as version_id
+        };
+
+    /*@@layout{"layoutInfo":{"inner":{"unconnected":[],"connected":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrWeHelp.PlanAttributes","x":-293,"y":-86}}}}*/
+    view PlAttrWeHelp as
+        select from (
+                       PlanAttributes
+            inner join EffortPlanning on
+                PlanAttributes.ID = EffortPlanning.attributeId.ID
+        )
+        {
+            PlanAttributes.ID,
+            PlanAttributes.resource.id            as resource_id,
+            PlanAttributes.str_elemet.id          as str_element,
+            PlanAttributes.str_elemet.description as str_el_descr,
+            EffortPlanning.period,
+            EffortPlanning.effort,
+            EffortPlanning.unit,
+            EffortPlanning.id                     as id_1
+        };
+
+    /*@@layout{"layoutInfo":{"x":404,"y":-584.5,"inner":{"unconnected":[],"connected":{"type":"JoinDS","id":"join_1","left":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrWr.PlanAttributes","x":-600,"y":-149},"right":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrWr.EffortPlanning","x":-277,"y":-192}}}}}*/
+    view PlAttrWr as
+        select from (
+                       PlanAttributes
+            inner join EffortPlanning on
+                PlanAttributes.ID = EffortPlanning.attributeId.ID
+        )
+        {
+            PlanAttributes.revenue_rate.{
+                id                 as rev_rate_id
+            },
+            PlanAttributes.ID      as pl_attr_id,
+            EffortPlanning.period,
+            EffortPlanning.effort,
+            EffortPlanning.unit,
+            EffortPlanning.id,
+            PlanAttributes.version.{
+                id                 as version_id
+            },
+            PlanAttributes.str_elemet.{
+                id                 as str_elem_id,
+                description        as str_elem_descr,
+                wr_calc_type       as wr_calc_type
+            }
+        };
+
+    /*@@layout{"layoutInfo":{"x":798,"y":-588.5,"inner":{"unconnected":[],"connected":{"type":"JoinDS","id":"join_1","left":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrTravel.PlanAttributes","x":-765,"y":-222},"right":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlAttrTravel.EffortPlanning","x":-344,"y":-256}}}}}*/
+    view PlAttrTravel as
+        select from (
+                       PlanAttributes
+            inner join EffortPlanning on
+                PlanAttributes.ID = EffortPlanning.attributeId.ID
+        )
+        {
+            PlanAttributes.ID,
+            PlanAttributes.resource.{
+                id                         as resource_id
+            },
+            PlanAttributes.travel_variant.{
+                id                         as trave_variant,
+                trav_var_name              as trav_var_name,
+                calc_type_tv               as calc_type_tv
+            },
+            PlanAttributes.str_elemet.{
+                id                         as str_elem_id,
+                tr_calc_type               as tr_calc_type,
+                contract_currency          as contract_currency
+            },
+            PlanAttributes.revenue_rate.{
+                id                         as rev_rate
+            },
+            PlanAttributes.remote_percent,
+            EffortPlanning.effort,
+            EffortPlanning.period,
+            EffortPlanning.unit,
+            EffortPlanning.id              as effort_id
+        };
+
+    context procedures {
+        table type efforts {
+            period : String(6);
+            effort : Decimal(10, 3);
+            unit   : String(3);
+        }
+        table type errors {
+            http_status_code : Integer;
+            error_message    : String(100);
+            detail           : String(100);
+        }
+    };
+
+    /*@@layout{"layoutInfo":{"x":-699,"y":-908.5,"inner":{"unconnected":[],"connected":{"type":"JoinDS","id":"join_1","left":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlanStructureDetail.PlanStructure","x":-618,"y":-213},"right":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlanStructureDetail.PlanStructure","alias":"PlanStructure_1","x":-253,"y":-200}}}}}*/
+    view PlanStructureDetail as
+        select from (
+                            PlanStructure
+            left outer join PlanStructure as PlanStructure_1 on
+                PlanStructure.parent.id = PlanStructure_1.id
+        )
+        {
+            PlanStructure.id,
+            PlanStructure.description,
+            PlanStructure.wr_calc_type,
+            PlanStructure.tr_calc_type,
+            PlanStructure.fpp_amount,
+            PlanStructure.contract_currency,
+            PlanStructure.version.{
+                id                           as version_id
+            },
+            coalesce(PlanStructure_1.description,' ')      as parent_name,
+            PlanStructure_1.id            as parent_id
+
+        };
+
+/*@@layout{"layoutInfo":{"x":-1123,"y":-891.5,"inner":{"unconnected":[],"connected":{"type":"SimpleDS","id":"\"plan_it\".\"plandb\"::data.PlanHierarchy.PlanStructureDetail","x":-430,"y":-30}}}}*/
+view PlanHierarchy as
+	select from PlanStructureDetail{description, wr_calc_type, tr_calc_type, fpp_amount, contract_currency, version_id};
+}
 
 
-};    
+

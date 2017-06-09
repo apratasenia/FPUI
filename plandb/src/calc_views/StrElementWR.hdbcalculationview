@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::StrElementWR" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="StrElementWR"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::FPP_Revenue">
+    <resourceUri>plan_it.plandb.calc_views::FPP_Revenue</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::StrElemTnMWR">
+    <resourceUri>plan_it.plandb.calc_views::StrElemTnMWR</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="Version">
+        <descriptions defaultDescription="Version"/>
+      </viewAttribute>
+      <viewAttribute id="structure_element">
+        <descriptions defaultDescription="structure_element"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="Work_Revenue_PC">
+        <descriptions defaultDescription="Work_Revenue_PC"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb.calc_views::FPP_Revenue">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Version" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="structure_element" source="str_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Work_Revenue_PC" source="FPP_Revenue_PC"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::StrElemTnMWR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Version" source="id_ver_rev"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="structure_element" source="str_elem_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Work_Revenue_PC" source="TnMWr_PC"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="Version" order="1" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Version"/>
+      <keyMapping columnObjectName="Union_1" columnName="Version"/>
+    </attribute>
+    <attribute id="structure_element" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="structure_element"/>
+      <keyMapping columnObjectName="Union_1" columnName="structure_element"/>
+    </attribute>
+    <attribute id="period" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Union_1" columnName="period"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Work_Revenue_PC" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Work_Revenue_PC"/>
+      <measureMapping columnObjectName="Union_1" columnName="Work_Revenue_PC"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="202"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

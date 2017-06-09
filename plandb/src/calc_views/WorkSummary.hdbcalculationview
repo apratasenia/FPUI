@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="plan_it.plandb.calc_views::WorkSummary" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" defaultClient="$$client$$" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="WorkSummary"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="plan_it.plandb.calc_views::StrElementWe">
+    <resourceUri>plan_it.plandb.calc_views::StrElementWe</resourceUri>
+  </DataSource>
+  <DataSource id="plan_it.plandb.calc_views::StrElementWR">
+    <resourceUri>plan_it.plandb.calc_views::StrElementWR</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="referential">
+    <viewAttributes>
+      <viewAttribute id="version_id">
+        <descriptions defaultDescription="version_id"/>
+      </viewAttribute>
+      <viewAttribute id="str_el_descr">
+        <descriptions defaultDescription="str_el_descr"/>
+      </viewAttribute>
+      <viewAttribute id="period">
+        <descriptions defaultDescription="period"/>
+      </viewAttribute>
+      <viewAttribute id="WorkExpPC" aggregationType="sum">
+        <descriptions defaultDescription="WorkExpPC"/>
+      </viewAttribute>
+      <viewAttribute id="Work_Revenue_PC" aggregationType="sum">
+        <descriptions defaultDescription="Work_Revenue_PC"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$str_element$structure_element"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="plan_it.plandb.calc_views::StrElementWe">
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="version_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="str_el_descr" source="str_el_descr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WorkExpPC" source="WorkExpPC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$str_element$structure_element" source="str_element"/>
+    </input>
+    <input node="plan_it.plandb.calc_views::StrElementWR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Work_Revenue_PC" source="Work_Revenue_PC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="version_id" source="Version"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$str_element$structure_element" source="structure_element"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
+    </input>
+    <joinAttribute name="version_id"/>
+    <joinAttribute name="JOIN$str_element$structure_element"/>
+    <joinAttribute name="period"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="version_id" order="1" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="version_id"/>
+      <keyMapping columnObjectName="Join_1" columnName="version_id"/>
+    </attribute>
+    <attribute id="str_el_descr" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="str_el_descr"/>
+      <keyMapping columnObjectName="Join_1" columnName="str_el_descr"/>
+    </attribute>
+    <attribute id="period" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="period"/>
+      <keyMapping columnObjectName="Join_1" columnName="period"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="WorkExpPC" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WorkExpPC"/>
+      <measureMapping columnObjectName="Join_1" columnName="WorkExpPC"/>
+    </measure>
+    <measure id="Work_Revenue_PC" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Work_Revenue_PC"/>
+      <measureMapping columnObjectName="Join_1" columnName="Work_Revenue_PC"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="184"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::StrElementWe" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="plan_it.plandb.calc_views::StrElementWR" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
