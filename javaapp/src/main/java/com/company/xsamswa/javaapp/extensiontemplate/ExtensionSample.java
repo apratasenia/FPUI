@@ -80,14 +80,14 @@ public class ExtensionSample {
 			DeserializerResult payload = dpCtx.getDeserializerResult();
 			Entity customerEntity = payload.getEntity();
 
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" VALUES ( ?,?,?,?,?)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" VALUES ( ?,Null,Null,Null,Null)");
 			
 			stmt.setString(1, customerEntity.getProperty("id").getValue().toString());
-			stmt.setString(2, customerEntity.getProperty("description").getValue().toString());
+/*			stmt.setString(2, customerEntity.getProperty("description").getValue().toString());
 			stmt.setBigDecimal(3, new BigDecimal(customerEntity.getProperty("cost_rate_tc").getValue().toString()));
-			stmt.setString(4, customerEntity.getProperty("currency_tc").getValue().toString());
+			stmt.setString(4, customerEntity.getProperty("currency_tc").getValue().toString()); 
 			Entity assocEntity = customerEntity.getNavigationLink("version").getInlineEntity();
-            stmt.setInt(5, Integer.parseInt(assocEntity.getProperty("id").getValue().toString()));			
+            stmt.setInt(5, Integer.parseInt(assocEntity.getProperty("id").getValue().toString()));			*/
             
 			logr.trace("ExtensionSample  <<  {createRecord} SQL Statement ");
 			
