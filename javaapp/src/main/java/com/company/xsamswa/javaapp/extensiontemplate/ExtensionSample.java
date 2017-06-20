@@ -80,7 +80,7 @@ public class ExtensionSample {
 			DeserializerResult payload = dpCtx.getDeserializerResult();
 			Entity customerEntity = payload.getEntity();
 
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" VALUES ( ?,Null,Null,Null,Null)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" VALUES ( ?,Null,Null,Null,1)");
 			
 			stmt.setString(1, customerEntity.getProperty("id").getValue().toString());
 /*			stmt.setString(2, customerEntity.getProperty("description").getValue().toString());

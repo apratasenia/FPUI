@@ -87,9 +87,7 @@
   
     <attribute id="work_cost_perc" order="24" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="work_cost_perc"/>
-  
       <keyMapping columnObjectName="data.TravelVariantCalc" columnName="work_cost_perc"/>
-  
     </attribute>
     <attribute id="trav_exp_reimb" order="25" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="trav_exp_reimb"/>
@@ -98,18 +96,6 @@
     <attribute id="trav_eff_reimb" order="26" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="trav_eff_reimb"/>
       <keyMapping columnObjectName="data.TravelVariantCalc" columnName="trav_eff_reimb"/>
-    </attribute>
-  
-    <attribute id="trav_var_name" order="27" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="trav_var_name"/>
-  
-      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="trav_var_name"/>
-  
-    </attribute>
-  
-    <attribute id="revenue_element_name" order="28" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="revenue_element_name"/>
-      <keyMapping columnObjectName="data.TravelVariantCalc" columnName="revenue_element_name"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -142,8 +128,6 @@
          
         
 </formula>
-      
-      
       
       
       
@@ -191,15 +175,11 @@
       
       
       
-      
-      
       </measure>
     <measure id="tr_exp_day_tc" order="3" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="tr_exp_day_tc"/>
       <unitCurrencyAttribute attributeName="tr_cost_currency"/>
       <formula>if(&quot;calc_type_tv&quot;= 'A' ,((&quot;wd_trip&quot; +&quot;add_wd_trip&quot;) * (&quot;acc_day_tc&quot;+&quot;other_day_tc&quot;)+&quot;transp_trip_tc&quot;) / &quot;wd_trip&quot;, 0)</formula>
-      
-      
       
       
       
@@ -257,8 +237,6 @@
       
       
       
-      
-      
       </measure>
   
     <measure id="tr_exp_lump_sum_tc" order="19" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
@@ -266,22 +244,16 @@
       <unitCurrencyAttribute attributeName="contract_currency"/>
       <formula>if(&quot;tr_calc_type&quot;= 'LSUMD',&quot;tr_exp_lump_sum&quot; ,0) </formula>
       
-      
-      
       </measure>
     <measure id="tr_eff_lump_sum_tc" order="20" semanticType="amount" aggregationType="sum" measureType="amount" datatype="REAL" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="tr_eff_lump_sum_tc"/>
       <unitCurrencyAttribute attributeName="contract_currency"/>
       <formula>if(&quot;tr_calc_type&quot;= 'LSUMD',&quot;tr_eff_lump_sum&quot; ,0) </formula>
       
-      
-      
       </measure>
     <measure id="tr_eff_day" order="21" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="1" expressionLanguage="COLUMN_ENGINE">
       <descriptions defaultDescription="tr_eff_day"/>
       <formula>if (&quot;wd_trip&quot; = 0, 0,&quot;total_tr_eff&quot;/&quot;wd_trip&quot;)</formula>
-      
-      
       
       </measure>
   </calculatedMeasures>

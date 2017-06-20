@@ -1,8 +1,0 @@
-{
-  "plan_it.plandb.synonyms::DUMMY": {
-    "target": {
-      "object": "DUMMY",
-      "schema": "SYS"
-    }
-  }
-}

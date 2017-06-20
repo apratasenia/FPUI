@@ -20,8 +20,7 @@
 		"tr_calc_type",
 		"fpp_amount",
 		"contract_currency",
-		"version.id",
-		"parent.id" ]
+		"version.id" ]
 		},
 	"column_mappings": {
 	    "id": 1,
@@ -30,8 +29,7 @@
 		"tr_calc_type": 4,
 		"fpp_amount": 5,
 		"contract_currency": 6,
-		"version.id": 7,
-		"parent.id": 8
+		"version.id": 7
 				}
 	}
 	]

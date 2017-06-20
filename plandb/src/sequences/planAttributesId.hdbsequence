@@ -1,4 +1,0 @@
-SEQUENCE "plan_it.plandb.sequences::planAttributesId" 
-START WITH 1 MAXVALUE 1999999999
-RESET BY 
-SELECT IFNULL(MAX("ID"), 4) + 1 FROM "plan_it.plandb::data.PlanAttributes"

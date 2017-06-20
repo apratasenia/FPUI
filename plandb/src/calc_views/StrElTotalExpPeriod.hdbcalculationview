@@ -29,6 +29,9 @@
       <viewAttribute id="WorkExpPC" aggregationType="sum">
         <descriptions defaultDescription="WorkExpPC"/>
       </viewAttribute>
+      <viewAttribute id="plan_currency">
+        <descriptions defaultDescription="plan_currency"/>
+      </viewAttribute>
       <viewAttribute id="id_ver_res">
         <descriptions defaultDescription="id_ver_res"/>
       </viewAttribute>
@@ -64,7 +67,9 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="str_element" source="str_element"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="str_el_descr" source="str_el_descr"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="period" source="period"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="WorkExpPC" source="WorkExpPC"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WorkExpPC" source="WorkExpPC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="plan_currency" source="plan_currency"/>
+    </input>
     <input node="plan_it.plandb.calc_views::StrElementTravel">
       <mapping xsi:type="Calculation:AttributeMapping" target="id_ver_res" source="id_ver_res"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="str_elem_id" source="str_elem_id"/>
@@ -99,7 +104,8 @@
     <attribute id="period" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="period"/>
       <keyMapping columnObjectName="Join_1" columnName="period"/>
-    </attribute></attributes>
+    </attribute>
+  </attributes>
   <calculatedAttributes/>
   <baseMeasures>
     <measure id="WorkExpPC" order="4" aggregationType="sum" measureType="simple">
@@ -116,15 +122,9 @@
     </measure>
   </baseMeasures>
   <calculatedMeasures>
-    <measure id="Total_Expenses" order="7" aggregationType="sum" measureType="simple" datatype="FLOAT" expressionLanguage="COLUMN_ENGINE" length="20">
+    <measure id="Total_Expenses" order="7" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" expressionLanguage="COLUMN_ENGINE" scale="2">
       <descriptions defaultDescription="Total Expenses"/>
       <formula>&quot;WorkExpPC&quot;+&quot;tr_exp_pc&quot;+&quot;tr_eff_exp_pc&quot;</formula>
-      
-      
-      
-      
-      
-      
       
       
       </measure>

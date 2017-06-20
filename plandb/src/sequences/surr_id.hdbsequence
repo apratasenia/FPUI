@@ -1,3 +1,0 @@
-SEQUENCE "plan_it.plandb.sequences::surr_id" 
-RESET BY 
-SELECT IFNULL(MAX("surr_id"), 0) + 1 FROM "plan_it.plandb::history.RevenueRateHistory"
