@@ -15,7 +15,10 @@ package com.company.xsamswa.javaapp.extensiontemplate;
 
 import java.math.*;
 import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.Types;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.Locale;
 
 import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.data.Property;
+import org.apache.olingo.commons.api.data.ValueType;
 import org.apache.olingo.commons.api.http.HttpHeader;
 import org.apache.olingo.commons.api.http.HttpMethod;
 import org.apache.olingo.server.api.OData;
@@ -79,26 +83,67 @@ public class ExtensionSample {
 			//Following 2 lines is used to get the entity object which represents the current request payload.
 			DeserializerResult payload = dpCtx.getDeserializerResult();
 			Entity customerEntity = payload.getEntity();
+			Long id = getNextIdFromSequence(dbnamespace + ".sequences::resourceId", conn);
+			if ( id != -1 ) {
+	//			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" (\"id\", \"version\") VALUES (?, ?)");
+			  PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" (\"id\", \"description\", \"cost_rate_tc\", \"currency_tc\", \"version\") VALUES (?,?,?,?,?)");
+			  stmt.setLong(1, id);
+			  Property pr = customerEntity.getProperty("description");
+			  if (pr != null) {
+				stmt.setString(2, pr.getValue().toString());
+				pr = null;
+			  }
+			  else {
+			  	stmt.setNull(2, Types.NVARCHAR);
+			  }
+			  pr = customerEntity.getProperty("cost_rate_tc");
+			  if (pr != null) {
+				stmt.setBigDecimal(3, new BigDecimal(pr.getValue().toString()));
+				pr = null;
+			  }
+			  else {
+			  	stmt.setNull(3, Types.DECIMAL);
+			  }
+			  pr = customerEntity.getProperty("currency_tc");
+			  if (pr != null) {
+				stmt.setString(4, pr.getValue().toString()); 
+			  	pr = null;
+			  }	
+			 else {
+			  	stmt.setNull(4, Types.NVARCHAR);
+			  }			  
+			  pr = customerEntity.getProperty("version");
+			  if (pr != null) {
+				stmt.setInt(5, Integer.parseInt(pr.getValue().toString()));
+			  }
+   			 else {
+			  	stmt.setNull(5, Types.INTEGER);
+			 }			  
 
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" VALUES ( ?,Null,Null,Null,1)");
-			
-			stmt.setString(1, customerEntity.getProperty("id").getValue().toString());
-/*			stmt.setString(2, customerEntity.getProperty("description").getValue().toString());
-			stmt.setBigDecimal(3, new BigDecimal(customerEntity.getProperty("cost_rate_tc").getValue().toString()));
-			stmt.setString(4, customerEntity.getProperty("currency_tc").getValue().toString()); 
-			Entity assocEntity = customerEntity.getNavigationLink("version").getInlineEntity();
-            stmt.setInt(5, Integer.parseInt(assocEntity.getProperty("id").getValue().toString()));			*/
-            
-			logr.trace("ExtensionSample  <<  {createRecord} SQL Statement ");
-			
-			stmt.executeUpdate();
-			logr.info(" Record created successfully ");
+/*				Entity assocEntity = customerEntity.getNavigationLink("version").getInlineEntity();
+	            stmt.setInt(5, Integer.parseInt(assocEntity.getProperty("id").getValue().toString()));			*/
+	// --
+			   logr.trace("ExtensionSample  <<  {createRecord} SQL Statement ");
+			   stmt.executeUpdate();   
+			   logr.info(" Record created successfully ");
+
+			   Property prop = customerEntity.getProperty("id");
+			   if (prop != null) {
+				 prop.setValue(prop.getValueType(), id);
+			   }
+			   else {
+				 customerEntity.addProperty(new Property(null, "id", ValueType.PRIMITIVE, id));
+			   }	  
+			   dpCtx.setResultEntity(customerEntity);
+		    }
+			else {
+				Exception ex = new Exception("Error obtaining Resource Id");
+				logr.error("ExtensionSample  << {insertRecord}", ex);
+				throw ex;	
+			}
+//--		    
 //			conn.close();
 			returnResponseIfRequestPrefers(dpCtx);
-
-		} catch (SQLException e) {
-			logr.error("ExtensionSample  << {insertRecord}", e);
-			throw new ExtensionException(e);
 		} catch (Exception e) {
 			logr.error("ExtensionSample  << {insertRecord}", e);
 			throw new ExtensionException(e);
@@ -109,7 +154,29 @@ public class ExtensionSample {
 		}
 	}
 
-	
+	private Long getNextIdFromSequence(String seqName, Connection cn) {
+		//Generate the object Id via the Sequence.
+		String sequenceSQL = "select " + "\""+ seqName + "\".NEXTVAL  FROM " + "\"DUMMY\"";
+		try {
+			Statement idStmt = cn.createStatement();
+			ResultSet sequenceRs = idStmt.executeQuery(sequenceSQL);
+			return ( sequenceRs.next() ? sequenceRs.getLong(1) : Long.valueOf(-1) );
+		}	
+		catch (SQLException sqlException) {			
+			return Long.valueOf(-1);
+		}
+	}
+/*private Entity createEntityFromResultSet(ResultSet rs) throws SQLException {
+		Entity e = new Entity();
+		ResultSetMetaData meta = rs.getMetaData();
+		int columnCount = meta.getColumnCount();
+		List<String> columns = new ArrayList<String>();
+		for (int i = 1; i <= columnCount; i++)
+			columns.add(meta.getColumnLabel(i));
+		for (String column : columns)
+			e.addProperty(new Property(null, column, ValueType.PRIMITIVE, rs.getObject(column)));
+		return e;
+	}	*/
 	 // * if the user sends Prefer return=minimal then don't read response
 	 // * otherwise read response i.e call setEntityToBeRead() method
 	 // * 
@@ -194,7 +261,7 @@ public class ExtensionSample {
 				prop = entity.getProperty(fieldName);
 				if (prop != null && prop.getValue() != null) {
 					if (sqlParams != "") sqlParams += ",";
-					sqlParams += " \"" + fieldName + "\"='" + String.valueOf(prop.getValue()) + "'";
+					sqlParams += " \"" + fieldName + "\"=" + String.valueOf(prop.getValue());
 					prop = null;
 				}
 				
@@ -299,9 +366,10 @@ public class ExtensionSample {
 	// * @throws ODataApplicationException
 	// * @throws ExtensionException
 	 
-	@ExtendDataProvider(entitySet = { "jsonContainer" }, requestTypes = RequestType.READ)
+	@ExtendDataProvider(entitySet = { "Resource" }, requestTypes = RequestType.READ)
 	public void readRecord(ExtensionContext ecx) throws ODataApplicationException, ExtensionException {
-
+		String s = System.getProperty("catalina.base");
+		System.out.println(s);
 		{
 			logr.debug("Entering ExtensionSample << {readRecord}");
 
