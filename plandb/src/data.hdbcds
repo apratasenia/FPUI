@@ -18,7 +18,7 @@ context data{
    
     type Date : LocalDate;
 
-    /*@@layout{"layoutInfo":{}}*/
+    /*@@layout{"layoutInfo":{"x":-484,"y":-614.5}}*/
     entity Version {
         key id          : BusinessKey;
             description : Description;
@@ -28,7 +28,7 @@ context data{
             resources   : association[0..*] to Resource { version };
     };
 
-    /*@@layout{"layoutInfo":{"x":-37,"y":-388.5}}*/
+    /*@@layout{"layoutInfo":{"x":302,"y":-742.5}}*/
     entity Resource {
         key id           : BusinessKey;
             description  : Description;
@@ -37,7 +37,7 @@ context data{
             version      : BusinessKey;
     };
 
-    /*@@layout{"layoutInfo":{}}*/
+    /*@@layout{"layoutInfo":{"x":590,"y":-498.5}}*/
     entity RevenueRate {
         key id           : BusinessKey;
             description  : Description;
@@ -53,7 +53,7 @@ context data{
    
     type Calc_type_tr : String(5);
 
-    /*@@layout{"layoutInfo":{}}*/
+    /*@@layout{"layoutInfo":{"x":-378,"y":202.5}}*/
     entity PlanStructure {
         key id                : BusinessKey;
             description       : Description;
@@ -64,7 +64,7 @@ context data{
             version           : association[1..1] to Version;
     };
 
-    /*@@layout{"layoutInfo":{}}*/
+    /*@@layout{"layoutInfo":{"x":-823,"y":-225.5}}*/
     entity TravelVariant {
         key id               : BusinessKey;
             trav_var_name    : Description;
@@ -91,7 +91,7 @@ context data{
    
     type Percentage : Decimal(10, 2);
 
-    /*@@layout{"layoutInfo":{}}*/
+    /*@@layout{"layoutInfo":{"x":-72,"y":-89.5}}*/
     entity PlanAttributes {
         key ID             : BusinessKey;
             resource       : association[0..1] to Resource;
@@ -102,7 +102,7 @@ context data{
             remote_percent : Percentage;
     };
 
-    /*@@layout{"layoutInfo":{}}*/
+    /*@@layout{"layoutInfo":{"x":-65,"y":-452.5}}*/
     entity EffortPlanning {
             period      : String(6);
             attributeId : association[0..1] to PlanAttributes;
