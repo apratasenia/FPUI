@@ -49,6 +49,6 @@ resources:
        config:
           schema: data
     properties:
-       hdi-container-name: ${service-name}
+       hdi-container-name_2: ${service-name}
     type: com.sap.xs.hdi-container
 
