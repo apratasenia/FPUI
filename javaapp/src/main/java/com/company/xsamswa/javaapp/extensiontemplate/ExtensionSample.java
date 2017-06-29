@@ -89,7 +89,7 @@ public class ExtensionSample {
 			  PreparedStatement stmt = conn.prepareStatement("INSERT INTO \"" + dbnamespace + "::data.Resource\" (\"id\", \"description\", \"cost_rate_tc\", \"currency_tc\", \"version\") VALUES (?,?,?,?,?)");
 			  stmt.setLong(1, id);
 			  Property pr = customerEntity.getProperty("description");
-			  if (pr != null) {
+			  if (pr != null && pr.getValue() != null) {
 				stmt.setString(2, pr.getValue().toString());
 				pr = null;
 			  }
@@ -97,7 +97,7 @@ public class ExtensionSample {
 			  	stmt.setNull(2, Types.NVARCHAR);
 			  }
 			  pr = customerEntity.getProperty("cost_rate_tc");
-			  if (pr != null) {
+			  if (pr != null && pr.getValue() != null) {
 				stmt.setBigDecimal(3, new BigDecimal(pr.getValue().toString()));
 				pr = null;
 			  }
@@ -105,7 +105,7 @@ public class ExtensionSample {
 			  	stmt.setNull(3, Types.DECIMAL);
 			  }
 			  pr = customerEntity.getProperty("currency_tc");
-			  if (pr != null) {
+			  if (pr != null && pr.getValue() != null) {
 				stmt.setString(4, pr.getValue().toString()); 
 			  	pr = null;
 			  }	
@@ -113,7 +113,7 @@ public class ExtensionSample {
 			  	stmt.setNull(4, Types.NVARCHAR);
 			  }			  
 			  pr = customerEntity.getProperty("version");
-			  if (pr != null) {
+			  if (pr != null && pr.getValue() != null) {
 				stmt.setInt(5, Integer.parseInt(pr.getValue().toString()));
 			  }
    			 else {
